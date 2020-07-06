@@ -43,7 +43,7 @@ services:
     image: zookeeper:latest
     restart: always
     ports:
-        - 2181:2181
+        - 2182:2181
     volumes:
         - ./zookeeper/conf:/conf
     environment:
