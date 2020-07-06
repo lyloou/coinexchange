@@ -48,3 +48,30 @@ services:
         - ./zookeeper/conf:/conf
     environment:
         - TZ=Asia/Hong_Kong
+  nginx:
+    container_name: nginx
+    image: nginx:latest
+    restart: always
+    ports:
+        - 8051:80
+        - 8043:443
+    volumes:
+        - ./nginx/dist:/usr/share/nginx/html
+        - ./nginx/conf/nginx.conf:/etc/nginx/nginx.conf
+        - ./nginx/conf/conf.d:/etc/nginx/conf.d
+    environment:
+        - TZ=Asia/Hong_Kong        
+  bu-admin:
+    container_name: admin
+    image: tomcat:8-jdk8
+    restart: always
+    depends_on:
+        - bu-service
+    ports:
+        - 9090:8080
+    volumes:
+        - ./app/tomcat8_admin/webapps:/usr/local/tomcat/webapps
+        - ./app/tomcat8_admin/conf:/usr/local/tomcat/conf
+        - ./app/tomcat8_admin/logs:/usr/local/tomcat/logs
+    environment:
+        - TZ=Asia/Hong_Kong        
