@@ -78,10 +78,11 @@ services:
       container_name: mongodb
       environment:
           - MONGO_INITDB_ROOT_USERNAME=root
-          - MONGO_INITDB_ROOT_PASSWORD=root
+          - MONGO_INITDB_ROOT_PASSWORD=123456
       ports:
         - "27018:27017"
       volumes:
-        - "./mongo/mongo:/data/db"
-        - "./mongo/mongo-entrypoint/:/docker-entrypoint-initdb.d/"
-      command: mongod        
+        - "./mongo/mongo:/data/mongo"
+        - "./mongo/conf:/data/conf"
+        - "./mongo/entrypoint/:/docker-entrypoint-initdb.d/"
+      command: mongod --config /data/conf/mongo.conf
