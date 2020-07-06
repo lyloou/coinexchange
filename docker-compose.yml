@@ -77,7 +77,7 @@ services:
       image: mongo:3.4
       container_name: mongodb
       environment:
-          - MONGO_INITDB_ROOT_USERNAME=root
+          - MONGO_INITDB_ROOT_USERNAME=admin
           - MONGO_INITDB_ROOT_PASSWORD=123456
       ports:
         - "27018:27017"
