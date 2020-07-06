@@ -65,8 +65,6 @@ services:
     container_name: admin
     image: tomcat:8-jdk8
     restart: always
-    depends_on:
-        - bu-service
     ports:
         - 9090:8080
     volumes:
