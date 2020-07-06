@@ -7,8 +7,8 @@ services:
     ports:
       - 3308:3306
     volumes:
-      - /data/coinexchange/db/mysql_data:/var/lib/mysql
-      - /data/coinexchange/db/mysql_conf:/etc/mysql
+      - ./db/mysql_data:/var/lib/mysql
+      - ./db/mysql_conf:/etc/mysql
     environment:
       - TZ=Asia/Hong_Kong
       - MYSQL_ROOT_PASSWORD=12345678
