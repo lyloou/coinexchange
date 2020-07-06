@@ -13,3 +13,38 @@ services:
       - TZ=Asia/Hong_Kong
       - MYSQL_ROOT_PASSWORD=12345678
     command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+  redis1-server:
+    container_name: redis1
+    image: redis:latest
+    restart: always
+    ports:
+        - 6380:6379
+    volumes:
+        - ./redis/redis1/conf/redis.conf:/usr/local/etc/redis/redis.conf
+    environment:
+        - TZ=Asia/Hong_Kong
+    entrypoint: redis-server /usr/local/etc/redis/redis.conf
+    # command: --requirepass "Credit2016Admin"
+  redis2-server:
+    container_name: redis2
+    image: redis:latest
+    restart: always
+    ports:
+        - 6381:6379
+    volumes:
+        - ./redis/redis2/conf/redis.conf:/usr/local/etc/redis/redis.conf
+    environment:
+        - TZ=Asia/Hong_Kong
+    entrypoint: redis-server /usr/local/etc/redis/redis.conf
+    # command: --requirepass "Credit2016Admin"
+  zk-server:
+    container_name: zookeeper
+    container_name: zookeeper
+    image: zookeeper:latest
+    restart: always
+    ports:
+        - 2181:2181
+    volumes:
+        - ./zookeeper/conf:/conf
+    environment:
+        - TZ=Asia/Hong_Kong
