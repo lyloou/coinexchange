@@ -48,19 +48,19 @@ services:
         - ./zookeeper/conf:/conf
     environment:
         - TZ=Asia/Hong_Kong
-  nginx:
-    container_name: nginx
-    image: nginx:latest
-    restart: always
-    ports:
-        - 8051:80
-        - 8043:443
-    volumes:
-        - ./nginx/dist:/usr/share/nginx/html
-        - ./nginx/conf/nginx.conf:/etc/nginx/nginx.conf
-        - ./nginx/conf/conf.d:/etc/nginx/conf.d
-    environment:
-        - TZ=Asia/Hong_Kong        
+  # nginx:
+  #   container_name: nginx
+  #   image: nginx:latest
+  #   restart: always
+  #   ports:
+  #       - 8051:80
+  #       - 8043:443
+  #   volumes:
+  #       - ./nginx/dist:/usr/share/nginx/html
+  #       - ./nginx/conf/nginx.conf:/etc/nginx/nginx.conf
+  #       - ./nginx/conf/conf.d:/etc/nginx/conf.d
+  #   environment:
+  #       - TZ=Asia/Hong_Kong        
   bu-admin:
     container_name: admin
     image: tomcat:8-jdk8
@@ -73,3 +73,15 @@ services:
         - ./app/tomcat8_admin/logs:/usr/local/tomcat/logs
     environment:
         - TZ=Asia/Hong_Kong        
+  mongo-container:
+      image: mongo:3.4
+      container_name: mongodb
+      environment:
+          - MONGO_INITDB_ROOT_USERNAME=root
+          - MONGO_INITDB_ROOT_PASSWORD=root
+      ports:
+        - "27018:27017"
+      volumes:
+        - "./mongo/mongo:/data/db"
+        - "./mongo/mongo-entrypoint/:/docker-entrypoint-initdb.d/"
+      command: mongod        
