@@ -81,8 +81,9 @@ services:
           - MONGO_INITDB_ROOT_PASSWORD=123456
       ports:
         - "27018:27017"
-      volumes:
-        - "./mongo/mongo:/data/mongo"
-        - "./mongo/conf:/data/conf"
-        - "./mongo/entrypoint/:/docker-entrypoint-initdb.d/"
-      command: mongod --config /data/conf/mongo.conf
+      # volumes:
+      #   - "./mongo/mongo:/data/mongo"
+      #   - "./mongo/conf:/data/conf"
+      #   - "./mongo/entrypoint/:/docker-entrypoint-initdb.d/"
+      # command: mongod --config /data/conf/mongo.conf
+      command: mongod
