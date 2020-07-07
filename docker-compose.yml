@@ -58,7 +58,7 @@ services:
     environment:
       KAFKA_ADVERTISED_HOST_NAME: 8.129.173.10 ## 修改:宿主机IP
       KAFKA_MESSAGE_MAX_BYTES: 2000000
-      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2182
+      KAFKA_ZOOKEEPER_CONNECT: cd-zookeeper:2182
       # KAFKA_ADVERTISED_PORT: 9092
       # KAFKA_LOG_RETENTION_HOURS: 120
       # KAFKA_MESSAGE_MAX_BYTES: 10000000
@@ -70,8 +70,8 @@ services:
       - ./kafka-logs:/kafka
       - /var/run/docker.sock:/var/run/docker.sock
 
-  ce-kafak-manager:
-    container_name: ce-kafak-manager
+  ce-kafka-manager:
+    container_name: ce-kafka-manager
     image: sheepkiller/kafka-manager
     ports:
       - 9020:9000
