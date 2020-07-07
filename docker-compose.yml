@@ -116,4 +116,18 @@ services:
     environment:
       - TZ=Asia/Shanghai
     entrypoint: java -server -Xms512m -Xmx512m -Xmn200m -Xss256k -jar -Dserver.port=7000 -Dspring.profiles.active=dev /cloud.jar
-  
+  ce-app-admin:
+    container_name: ce-app-admin
+    image: openjdk:8
+    restart: always
+    ports:
+      - 7000:7000
+    volumes:
+      - ./app/admin/admin-api.jar:/admin-api.jar
+      - ./app/logs:/mnt/logs/
+      # 指定容器时间为宿主机时间
+      - /etc/localtime:/etc/localtime
+    environment:
+      - TZ=Asia/Shanghai
+    entrypoint: java -server -Xms512m -Xmx512m -Xmn200m -Xss256k -jar -Dserver.port=7000 -Dspring.profiles.active=dev /admin-api.jar
+    
