@@ -104,7 +104,7 @@ services:
     command: mongod
   ce-app-cloud:
     container_name: ce-app-cloud
-    image: java:8
+    image: openjdk:8
     restart: always
     ports:
       - 7000:7000
