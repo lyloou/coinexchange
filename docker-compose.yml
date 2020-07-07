@@ -120,8 +120,8 @@ services:
     container_name: ce-app-admin
     image: openjdk:8
     restart: always
-    # ports:
-    # - 6010:6010
+    ports:
+      - 6011:6010
     volumes:
       - ./app/admin/admin-api.jar:/admin-api.jar
       - ./app/logs:/mnt/logs/
