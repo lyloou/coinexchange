@@ -7,10 +7,11 @@ services:
     ports:
       - 3308:3306
     volumes:
-      - ./db/mysql:/var/lib/mysql
+      - my-datavolume:/var/lib/mysql
     environment:
       - TZ=Asia/Shanghai
-      - MYSQL_ROOT_PASSWORD=12345678
+      - MYSQL_ROOT_PASSWORD=12345678  
+      - /etc/localtime:/etc/localtime
     command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
   ce-redis1:
     container_name: ce-redis1
@@ -128,3 +129,5 @@ services:
       - ./app/web-admin/conf/conf.d:/etc/nginx/conf.d
     environment:
       - TZ=Asia/Shanghai
+volumes:
+  my-datavolume:
