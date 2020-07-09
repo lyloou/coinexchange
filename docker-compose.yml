@@ -10,7 +10,7 @@ services:
       - my-datavolume:/var/lib/mysql
     environment:
       - TZ=Asia/Shanghai
-      - MYSQL_ROOT_PASSWORD=12345678  
+      - MYSQL_ROOT_PASSWORD=12345678
       - /etc/localtime:/etc/localtime
     command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
   ce-redis1:
@@ -102,7 +102,7 @@ services:
       - /etc/localtime:/etc/localtime
     environment:
       - TZ=Asia/Shanghai
-    entrypoint: java -server -Xms512m -Xmx512m -Xmn200m -Xss256k -jar -Dserver.port=7000  -Dspring.profiles.active=dev /cloud.jar
+    entrypoint: java -server -Xms512m -Xmx512m -Xmn200m -Xss256k -jar -Dserver.port=7000 -Dspring.profiles.active=dev /cloud.jar
   ce-app-admin:
     container_name: ce-app-admin
     image: openjdk:8
@@ -129,5 +129,13 @@ services:
       - ./app/web-admin/conf/conf.d:/etc/nginx/conf.d
     environment:
       - TZ=Asia/Shanghai
+  ce-dockerui:
+    container_name: ce-dockerui
+    image: adh1nav/dockerui:latest
+    restart: always
+    ports:
+      - 9000:9000
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
 volumes:
   my-datavolume:
