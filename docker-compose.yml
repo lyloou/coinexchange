@@ -131,7 +131,7 @@ services:
       - TZ=Asia/Shanghai
   ce-dockerui:
     container_name: ce-dockerui
-    image: adh1nav/dockerui:latest
+    image: abh1nav/dockerui:latest
     restart: always
     ports:
       - 9000:9000
