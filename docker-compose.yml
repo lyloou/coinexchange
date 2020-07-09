@@ -76,20 +76,7 @@ services:
     ports:
       - 9020:9000
     environment:
-      ZK_HOSTS: zookeeper:2181
-  # nginx:
-  #   container_name: nginx
-  #   image: nginx:latest
-  #   restart: always
-  #   ports:
-  #       - 8051:80
-  #       - 8043:443
-  #   volumes:
-  #       - ./nginx/dist:/usr/share/nginx/html
-  #       - ./nginx/conf/nginx.conf:/etc/nginx/nginx.conf
-  #       - ./nginx/conf/conf.d:/etc/nginx/conf.d
-  #   environment:
-  #       - TZ=Asia/Shanghai
+      ZK_HOSTS: ce-zookeeper:2181
   ce-mongo:
     container_name: ce-mongo
     image: mongo:3.4
@@ -115,7 +102,7 @@ services:
       - /etc/localtime:/etc/localtime
     environment:
       - TZ=Asia/Shanghai
-    entrypoint: java -server -Xms512m -Xmx512m -Xmn200m -Xss256k -jar -Dserver.port=7000 -Dspring.profiles.active=dev /cloud.jar
+    entrypoint: java -server -Xms512m -Xmx512m -Xmn200m -Xss256k -jar -Dserver.port=7000  dev /cloud.jar
   ce-app-admin:
     container_name: ce-app-admin
     image: openjdk:8
