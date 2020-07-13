@@ -129,17 +129,17 @@ services:
       - ./app/web-admin/conf/conf.d:/etc/nginx/conf.d
     environment:
       - TZ=Asia/Shanghai
-  ce-portainer:
-    container_name: ce-portainer
-    image: portainer/portainer
-    command: -H unix:///var/run/docker.sock
+  ce-web-web:
+    container_name: ce-web-web
+    image: nginx:latest
     restart: always
     ports:
-      - 9000:9000
-      - 8000:8000
+      - 8091:80
     volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-      - portainer_data:/data
+      - ./app/web-web/dist:/usr/share/nginx/html
+      - ./app/web-web/conf/nginx.conf:/etc/nginx/nginx.conf
+      - ./app/web-web/conf/conf.d:/etc/nginx/conf.d
+    environment:
+      - TZ=Asia/Shanghai
 volumes:
   my-datavolume:
-  portainer_data:
