@@ -108,7 +108,7 @@ services:
     image: openjdk:8
     restart: always
     ports:
-      - 6011:6010
+      - 6012:6010
     volumes:
       - ./app/admin/admin-api.jar:/admin-api.jar
       - ./app/logs:/mnt/logs/
