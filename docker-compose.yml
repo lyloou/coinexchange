@@ -2,7 +2,7 @@ version: "3.3"
 services:
   ce-mysql:
     container_name: ce-mysql
-    image: mysql:5.6
+    image: mysql:5.7
     restart: always
     ports:
       - 3308:3306
@@ -112,7 +112,7 @@ services:
     ports:
       - 9001:6001
     volumes:
-      - ./app/uc/ucenter-api.jar:/ucenter-api.jar
+      - ./app/ucenter-api/ucenter-api.jar:/ucenter-api.jar
       - ./app/logs:/mnt/logs/
       # 指定容器时间为宿主机时间
       - /etc/localtime:/etc/localtime
@@ -126,7 +126,7 @@ services:
     ports:
       - 9003:6003
     volumes:
-      - ./app/exchange/exchange-api.jar:/exchange-api.jar
+      - ./app/exchange-api/exchange-api.jar:/exchange-api.jar
       - ./app/logs:/mnt/logs/
       # 指定容器时间为宿主机时间
       - /etc/localtime:/etc/localtime
