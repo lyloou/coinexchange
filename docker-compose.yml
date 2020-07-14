@@ -7,7 +7,7 @@ services:
     ports:
       - 3308:3306
     volumes:
-      - my-datavolume:/var/lib/mysql
+      - ce-mysql:/var/lib/mysql
     environment:
       - TZ=Asia/Shanghai
       - MYSQL_ROOT_PASSWORD=12345678
@@ -230,4 +230,4 @@ services:
     environment:
       - TZ=Asia/Shanghai
 volumes:
-  my-datavolume:
+  ce-mysql:
