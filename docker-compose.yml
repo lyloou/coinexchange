@@ -2,7 +2,7 @@ version: "3.3"
 services:
   ce-mysql:
     container_name: ce-mysql
-    image: mysql:latest
+    image: mysql:5.6
     restart: always
     ports:
       - 3308:3306
@@ -89,6 +89,7 @@ services:
       - "./mongo/db:/data/db"
       - "./mongo/entrypoint/:/docker-entrypoint-initdb.d/"
     command: mongod
+  ######## ce-app
   ce-app-cloud:
     container_name: ce-app-cloud
     image: openjdk:8
@@ -103,12 +104,55 @@ services:
     environment:
       - TZ=Asia/Shanghai
     entrypoint: java -server -Xms512m -Xmx512m -Xmn200m -Xss256k -jar -Dserver.port=7000 -Dspring.profiles.active=dev /cloud.jar
+
+  ce-app-ucenter-api:
+    container_name: ce-app-ucenter-api
+    image: openjdk:8
+    restart: always
+    ports:
+      - 9001:6001
+    volumes:
+      - ./app/uc/ucenter-api.jar:/ucenter-api.jar
+      - ./app/logs:/mnt/logs/
+      # 指定容器时间为宿主机时间
+      - /etc/localtime:/etc/localtime
+    environment:
+      - TZ=Asia/Shanghai
+    entrypoint: java -server -Xms512m -Xmx512m -Xmn200m -Xss256k -jar -Dserver.port=6001 -Dspring.profiles.active=dev /ucenter-api.jar
+  ce-app-exchange-api:
+    container_name: ce-app-exchange-api
+    image: openjdk:8
+    restart: always
+    ports:
+      - 9003:6003
+    volumes:
+      - ./app/exchange/exchange-api.jar:/exchange-api.jar
+      - ./app/logs:/mnt/logs/
+      # 指定容器时间为宿主机时间
+      - /etc/localtime:/etc/localtime
+    environment:
+      - TZ=Asia/Shanghai
+    entrypoint: java -server -Xms512m -Xmx512m -Xmn200m -Xss256k -jar -Dserver.port=6003 -Dspring.profiles.active=dev /exchange-api.jar
+  ce-app-exchange:
+    container_name: ce-app-exchange
+    image: openjdk:8
+    restart: always
+    ports:
+      - 9005:6005
+    volumes:
+      - ./app/exchange/exchange.jar:/exchange.jar
+      - ./app/logs:/mnt/logs/
+      # 指定容器时间为宿主机时间
+      - /etc/localtime:/etc/localtime
+    environment:
+      - TZ=Asia/Shanghai
+    entrypoint: java -server -Xms512m -Xmx512m -Xmn200m -Xss256k -jar -Dserver.port=6005 -Dspring.profiles.active=dev /exchange.jar
   ce-app-admin:
     container_name: ce-app-admin
     image: openjdk:8
     restart: always
     ports:
-      - 6013:6010
+      - 9010:6010
     volumes:
       - ./app/admin/admin-api.jar:/admin-api.jar
       - ./app/logs:/mnt/logs/
@@ -117,6 +161,50 @@ services:
     environment:
       - TZ=Asia/Shanghai
     entrypoint: java -server -Xms512m -Xmx512m -Xmn200m -Xss256k -jar -Dserver.port=6010 -Dspring.profiles.active=dev /admin-api.jar
+  ce-app-open-api:
+    container_name: ce-app-open-api
+    image: openjdk:8
+    restart: always
+    ports:
+      - 9011:7010
+    volumes:
+      - ./app/open-api/open-api.jar:/open-api.jar
+      - ./app/logs:/mnt/logs/
+      # 指定容器时间为宿主机时间
+      - /etc/localtime:/etc/localtime
+    environment:
+      - TZ=Asia/Shanghai
+    entrypoint: java -server -Xms512m -Xmx512m -Xmn200m -Xss256k -jar -Dserver.port=7010 -Dspring.profiles.active=dev /open-api.jar
+  ce-app-otc-api:
+    container_name: ce-app-otc-api
+    image: openjdk:8
+    restart: always
+    ports:
+      - 9006:6006
+    volumes:
+      - ./app/otc-api/otc-api.jar:/otc-api.jar
+      - ./app/logs:/mnt/logs/
+      # 指定容器时间为宿主机时间
+      - /etc/localtime:/etc/localtime
+    environment:
+      - TZ=Asia/Shanghai
+    entrypoint: java -server -Xms512m -Xmx512m -Xmn200m -Xss256k -jar -Dserver.port=6006 -Dspring.profiles.active=dev /otc-api.jar
+  ce-app-wallet:
+    container_name: ce-app-wallet
+    image: openjdk:8
+    restart: always
+    ports:
+      - 9007:7006
+    volumes:
+      - ./app/wallet/wallet.jar:/wallet.jar
+      - ./app/logs:/mnt/logs/
+      # 指定容器时间为宿主机时间
+      - /etc/localtime:/etc/localtime
+    environment:
+      - TZ=Asia/Shanghai
+    entrypoint: java -server -Xms512m -Xmx512m -Xmn200m -Xss256k -jar -Dserver.port=7006 -Dspring.profiles.active=dev /wallet.jar
+
+  ######## ce-web
   ce-web-admin:
     container_name: ce-web-admin
     image: nginx:latest
