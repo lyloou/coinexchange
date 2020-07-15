@@ -227,8 +227,8 @@ services:
       - 8090:80
     volumes:
       - ./app/web-admin/dist:/usr/share/nginx/html
-      - ./app/web-admin/conf/nginx.conf:/etc/nginx/nginx.conf
-      - ./app/web-admin/conf/conf.d:/etc/nginx/conf.d
+      - ./nginx/web-admin/conf/nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx/web-admin/conf/conf.d:/etc/nginx/conf.d
     environment:
       - TZ=Asia/Shanghai
   ce-web-web:
@@ -239,8 +239,8 @@ services:
       - 8091:80
     volumes:
       - ./app/web-web/dist:/usr/share/nginx/html
-      - ./app/web-web/conf/nginx.conf:/etc/nginx/nginx.conf
-      - ./app/web-web/conf/conf.d:/etc/nginx/conf.d
+      - ./nginx/web-web/conf/nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx/web-web/conf/conf.d:/etc/nginx/conf.d
     environment:
       - TZ=Asia/Shanghai
 volumes:
