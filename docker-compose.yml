@@ -239,7 +239,6 @@ services:
       - 8091:80
     volumes:
       - ./app/web-web/dist:/usr/share/nginx/html
-      - ./app/introduction:/usr/share/nginx/introduction
       - ./nginx/web-web/conf/nginx.conf:/etc/nginx/nginx.conf
       - ./nginx/web-web/conf/conf.d:/etc/nginx/conf.d
     environment:
