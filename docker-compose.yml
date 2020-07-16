@@ -127,6 +127,8 @@ services:
     networks:
       extnetwork:
         ipv4_address: 172.19.0.16
+    extra_hosts:
+      - "bitrade-market:172.19.0.23"    
   ce-app-ucenter-api:
     container_name: ce-app-ucenter-api
     image: openjdk:8
@@ -144,6 +146,8 @@ services:
     networks:
       extnetwork:
         ipv4_address: 172.19.0.17
+    extra_hosts:
+      - "bitrade-market:172.19.0.23"    
   ce-app-exchange-api:
     container_name: ce-app-exchange-api
     image: openjdk:8
@@ -161,6 +165,8 @@ services:
     networks:
       extnetwork:
         ipv4_address: 172.19.0.18
+    extra_hosts:
+      - "bitrade-market:172.19.0.23"    
   ce-app-exchange:
     container_name: ce-app-exchange
     image: openjdk:8
@@ -178,6 +184,8 @@ services:
     networks:
       extnetwork:
         ipv4_address: 172.19.0.19
+    extra_hosts:
+      - "bitrade-market:172.19.0.23"    
   ce-app-admin:
     container_name: ce-app-admin
     image: openjdk:8
@@ -195,6 +203,8 @@ services:
     networks:
       extnetwork:
         ipv4_address: 172.19.0.20
+    extra_hosts:
+      - "bitrade-market:172.19.0.23"    
   ce-app-open-api:
     container_name: ce-app-open-api
     image: openjdk:8
@@ -212,6 +222,8 @@ services:
     networks:
       extnetwork:
         ipv4_address: 172.19.0.21
+    extra_hosts:
+      - "bitrade-market:172.19.0.23"    
   ce-app-chat:
     container_name: ce-app-chat
     image: openjdk:8
@@ -229,6 +241,8 @@ services:
     networks:
       extnetwork:
         ipv4_address: 172.19.0.22
+    extra_hosts:
+      - "bitrade-market:172.19.0.23"    
   ce-app-market:
     container_name: ce-app-market
     image: openjdk:8
@@ -246,6 +260,8 @@ services:
     networks:
       extnetwork:
         ipv4_address: 172.19.0.23
+    extra_hosts:
+      - "bitrade-market:172.19.0.23"    
   ce-app-otc-api:
     container_name: ce-app-otc-api
     image: openjdk:8
@@ -263,6 +279,8 @@ services:
     networks:
       extnetwork:
         ipv4_address: 172.19.0.24
+    extra_hosts:
+      - "bitrade-market:172.19.0.23"    
   ce-app-wallet:
     container_name: ce-app-wallet
     image: openjdk:8
@@ -280,6 +298,8 @@ services:
     networks:
       extnetwork:
         ipv4_address: 172.19.0.25
+    extra_hosts:
+      - "bitrade-market:172.19.0.23"    
   ######## ce-web
   ce-web-admin:
     container_name: ce-web-admin
@@ -296,6 +316,8 @@ services:
     networks:
       extnetwork:
         ipv4_address: 172.19.0.26  
+    extra_hosts:
+      - "bitrade-market:172.19.0.23"    
   ce-web-web:
     container_name: ce-web-web
     image: nginx:latest
@@ -311,6 +333,8 @@ services:
     networks:
       extnetwork:
         ipv4_address: 172.19.0.27
+    extra_hosts:
+      - "bitrade-market:172.19.0.23"    
 volumes:
   ce-mysql-5.6:
 
