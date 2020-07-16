@@ -175,6 +175,20 @@ services:
     environment:
       - TZ=Asia/Shanghai
     entrypoint: java -server -Xms512m -Xmx512m -Xmn200m -Xss256k -jar -Dserver.port=7010 -Dspring.profiles.active=dev /open-api.jar
+  ce-app-chat:
+    container_name: ce-app-chat
+    image: openjdk:8
+    restart: always
+    ports:
+      - 9008:6008
+    volumes:
+      - ./app/chat/chat.jar:/chat.jar
+      - ./logs:/mnt/logs/
+      # 指定容器时间为宿主机时间
+      - /etc/localtime:/etc/localtime
+    environment:
+      - TZ=Asia/Shanghai
+    entrypoint: java -server -Xms512m -Xmx512m -Xmn200m -Xss256k -jar -Dserver.port=6008 -Dspring.profiles.active=dev /chat.jar    
   ce-app-market:
     container_name: ce-app-market
     image: openjdk:8
