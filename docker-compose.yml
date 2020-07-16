@@ -56,7 +56,7 @@ services:
     ports:
       - "9083:9092"
     environment:
-      KAFKA_ADVERTISED_HOST_NAME: 192.168.1.22 ## 修改:宿主机IP
+      KAFKA_ADVERTISED_HOST_NAME: 47.90.85.102 ## 修改:宿主机IP
       KAFKA_MESSAGE_MAX_BYTES: 2000000
       KAFKA_ZOOKEEPER_CONNECT: ce-zookeeper:2181
       # KAFKA_ADVERTISED_PORT: 9092
