@@ -98,7 +98,7 @@ services:
       - 7000:7000
     volumes:
       - ./app/cloud/cloud.jar:/cloud.jar
-      - ./app/logs:/mnt/logs/
+      - ./logs:/mnt/logs/
       # 指定容器时间为宿主机时间
       - /etc/localtime:/etc/localtime
     environment:
@@ -113,7 +113,7 @@ services:
       - 9001:6001
     volumes:
       - ./app/ucenter-api/ucenter-api.jar:/ucenter-api.jar
-      - ./app/logs:/mnt/logs/
+      - ./logs:/mnt/logs/
       # 指定容器时间为宿主机时间
       - /etc/localtime:/etc/localtime
     environment:
@@ -127,7 +127,7 @@ services:
       - 9003:6003
     volumes:
       - ./app/exchange-api/exchange-api.jar:/exchange-api.jar
-      - ./app/logs:/mnt/logs/
+      - ./logs:/mnt/logs/
       # 指定容器时间为宿主机时间
       - /etc/localtime:/etc/localtime
     environment:
@@ -141,7 +141,7 @@ services:
       - 9005:6005
     volumes:
       - ./app/exchange/exchange.jar:/exchange.jar
-      - ./app/logs:/mnt/logs/
+      - ./logs:/mnt/logs/
       # 指定容器时间为宿主机时间
       - /etc/localtime:/etc/localtime
     environment:
@@ -155,7 +155,7 @@ services:
       - 9010:6010
     volumes:
       - ./app/admin/admin-api.jar:/admin-api.jar
-      - ./app/logs:/mnt/logs/
+      - ./logs:/mnt/logs/
       # 指定容器时间为宿主机时间
       - /etc/localtime:/etc/localtime
     environment:
@@ -169,7 +169,7 @@ services:
       - 9011:7010
     volumes:
       - ./app/open-api/open-api.jar:/open-api.jar
-      - ./app/logs:/mnt/logs/
+      - ./logs:/mnt/logs/
       # 指定容器时间为宿主机时间
       - /etc/localtime:/etc/localtime
     environment:
@@ -183,7 +183,7 @@ services:
       - 9004:6004
     volumes:
       - ./app/market/market.jar:/market.jar
-      - ./app/logs:/mnt/logs/
+      - ./logs:/mnt/logs/
       # 指定容器时间为宿主机时间
       - /etc/localtime:/etc/localtime
     environment:
@@ -197,7 +197,7 @@ services:
       - 9006:6006
     volumes:
       - ./app/otc-api/otc-api.jar:/otc-api.jar
-      - ./app/logs:/mnt/logs/
+      - ./logs:/mnt/logs/
       # 指定容器时间为宿主机时间
       - /etc/localtime:/etc/localtime
     environment:
@@ -211,7 +211,7 @@ services:
       - 9007:7006
     volumes:
       - ./app/wallet/wallet.jar:/wallet.jar
-      - ./app/logs:/mnt/logs/
+      - ./logs:/mnt/logs/
       # 指定容器时间为宿主机时间
       - /etc/localtime:/etc/localtime
     environment:
