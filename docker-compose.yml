@@ -1,4 +1,4 @@
-version: "3.3"
+version: "2"
 services:
   ce-mysql:
     container_name: ce-mysql
