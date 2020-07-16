@@ -109,6 +109,7 @@ services:
     networks:
       extnetwork:
         ipv4_address: 172.19.0.15
+        
   ######## ce-app
   ce-app-cloud:
     container_name: ce-app-cloud
@@ -129,6 +130,15 @@ services:
         ipv4_address: 172.19.0.16
     extra_hosts:
       - "bitrade-market:172.19.0.23"    
+     depends_on:
+        - ce-mysql
+        - ce-redis1
+        - ce-redis2
+        - ce-zookeeper
+        - ce-kafka
+        - ce-kafka-manager
+        - ce-mongo
+
   ce-app-ucenter-api:
     container_name: ce-app-ucenter-api
     image: openjdk:8
@@ -148,6 +158,18 @@ services:
         ipv4_address: 172.19.0.17
     extra_hosts:
       - "bitrade-market:172.19.0.23"    
+    depends_on:
+      - ce-mysql
+      - ce-redis1
+      - ce-redis2
+      - ce-zookeeper
+      - ce-kafka
+      - ce-kafka-manager
+      - ce-mongo
+      - ce-app-exchange
+      - ce-app-cloud
+      - ce-app-market
+
   ce-app-exchange-api:
     container_name: ce-app-exchange-api
     image: openjdk:8
@@ -167,6 +189,18 @@ services:
         ipv4_address: 172.19.0.18
     extra_hosts:
       - "bitrade-market:172.19.0.23"    
+    depends_on:
+      - ce-mysql
+      - ce-redis1
+      - ce-redis2
+      - ce-zookeeper
+      - ce-kafka
+      - ce-kafka-manager
+      - ce-mongo
+      - ce-app-exchange
+      - ce-app-cloud
+      - ce-app-market
+
   ce-app-exchange:
     container_name: ce-app-exchange
     image: openjdk:8
@@ -186,6 +220,16 @@ services:
         ipv4_address: 172.19.0.19
     extra_hosts:
       - "bitrade-market:172.19.0.23"    
+    depends_on:
+      - ce-mysql
+      - ce-redis1
+      - ce-redis2
+      - ce-zookeeper
+      - ce-kafka
+      - ce-kafka-manager
+      - ce-mongo
+      - ce-app-cloud
+  
   ce-app-admin:
     container_name: ce-app-admin
     image: openjdk:8
@@ -205,6 +249,18 @@ services:
         ipv4_address: 172.19.0.20
     extra_hosts:
       - "bitrade-market:172.19.0.23"    
+    depends_on:
+      - ce-mysql
+      - ce-redis1
+      - ce-redis2
+      - ce-zookeeper
+      - ce-kafka
+      - ce-kafka-manager
+      - ce-mongo
+      - ce-app-exchange
+      - ce-app-cloud
+      - ce-app-market
+  
   ce-app-open-api:
     container_name: ce-app-open-api
     image: openjdk:8
@@ -224,6 +280,18 @@ services:
         ipv4_address: 172.19.0.21
     extra_hosts:
       - "bitrade-market:172.19.0.23"    
+    depends_on:
+      - ce-mysql
+      - ce-redis1
+      - ce-redis2
+      - ce-zookeeper
+      - ce-kafka
+      - ce-kafka-manager
+      - ce-mongo
+      - ce-app-exchange
+      - ce-app-cloud
+      - ce-app-market
+
   ce-app-chat:
     container_name: ce-app-chat
     image: openjdk:8
@@ -243,6 +311,18 @@ services:
         ipv4_address: 172.19.0.22
     extra_hosts:
       - "bitrade-market:172.19.0.23"    
+    depends_on:
+      - ce-mysql
+      - ce-redis1
+      - ce-redis2
+      - ce-zookeeper
+      - ce-kafka
+      - ce-kafka-manager
+      - ce-mongo
+      - ce-app-exchange
+      - ce-app-cloud
+      - ce-app-market
+
   ce-app-market:
     container_name: ce-app-market
     image: openjdk:8
@@ -262,6 +342,16 @@ services:
         ipv4_address: 172.19.0.23
     extra_hosts:
       - "bitrade-market:172.19.0.23"    
+    depends_on:
+      - ce-mysql
+      - ce-redis1
+      - ce-redis2
+      - ce-zookeeper
+      - ce-kafka
+      - ce-kafka-manager
+      - ce-mongo
+      - ce-app-cloud
+
   ce-app-otc-api:
     container_name: ce-app-otc-api
     image: openjdk:8
@@ -281,6 +371,18 @@ services:
         ipv4_address: 172.19.0.24
     extra_hosts:
       - "bitrade-market:172.19.0.23"    
+    depends_on:
+      - ce-mysql
+      - ce-redis1
+      - ce-redis2
+      - ce-zookeeper
+      - ce-kafka
+      - ce-kafka-manager
+      - ce-mongo
+      - ce-app-exchange
+      - ce-app-cloud
+      - ce-app-market
+
   ce-app-wallet:
     container_name: ce-app-wallet
     image: openjdk:8
@@ -300,6 +402,18 @@ services:
         ipv4_address: 172.19.0.25
     extra_hosts:
       - "bitrade-market:172.19.0.23"    
+    depends_on:
+      - ce-mysql
+      - ce-redis1
+      - ce-redis2
+      - ce-zookeeper
+      - ce-kafka
+      - ce-kafka-manager
+      - ce-mongo
+      - ce-app-exchange
+      - ce-app-cloud
+      - ce-app-market
+
   ######## ce-web
   ce-web-admin:
     container_name: ce-web-admin
@@ -318,6 +432,18 @@ services:
         ipv4_address: 172.19.0.26  
     extra_hosts:
       - "bitrade-market:172.19.0.23"    
+    depends_on:
+      - ce-mysql
+      - ce-redis1
+      - ce-redis2
+      - ce-zookeeper
+      - ce-kafka
+      - ce-kafka-manager
+      - ce-mongo
+      - ce-app-exchange
+      - ce-app-cloud
+      - ce-app-market
+
   ce-web-web:
     container_name: ce-web-web
     image: nginx:latest
@@ -335,6 +461,18 @@ services:
         ipv4_address: 172.19.0.27
     extra_hosts:
       - "bitrade-market:172.19.0.23"    
+    depends_on:
+      - ce-mysql
+      - ce-redis1
+      - ce-redis2
+      - ce-zookeeper
+      - ce-kafka
+      - ce-kafka-manager
+      - ce-mongo
+      - ce-app-exchange
+      - ce-app-cloud
+      - ce-app-market
+      
 volumes:
   ce-mysql-5.6:
 
