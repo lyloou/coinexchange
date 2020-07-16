@@ -109,7 +109,7 @@ services:
     networks:
       extnetwork:
         ipv4_address: 172.19.0.15
-        
+
   ######## ce-app
   ce-app-cloud:
     container_name: ce-app-cloud
@@ -130,7 +130,7 @@ services:
         ipv4_address: 172.19.0.16
     extra_hosts:
       - "bitrade-market:172.19.0.23"    
-     depends_on:
+    depends_on:
         - ce-mysql
         - ce-redis1
         - ce-redis2
