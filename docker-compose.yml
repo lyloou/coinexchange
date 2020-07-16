@@ -13,6 +13,9 @@ services:
       - MYSQL_ROOT_PASSWORD=12345678
       - /etc/localtime:/etc/localtime
     command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    networks:
+      extnetwork:
+        ipv4_address: 172.19.0.09
   ce-redis1:
     container_name: ce-redis1
     image: redis:latest
@@ -25,6 +28,9 @@ services:
       - TZ=Asia/Shanghai
     entrypoint: redis-server /usr/local/etc/redis/redis.conf
     # command: --requirepass "Credit2016Admin"
+    networks:
+      extnetwork:
+        ipv4_address: 172.19.0.10
   ce-redis2:
     container_name: ce-redis2
     image: redis:latest
@@ -37,6 +43,9 @@ services:
       - TZ=Asia/Shanghai
     entrypoint: redis-server /usr/local/etc/redis/redis.conf
     # command: --requirepass "Credit2016Admin"
+    networks:
+      extnetwork:
+        ipv4_address: 172.19.0.11
   ce-zookeeper:
     container_name: ce-zookeeper
     image: wurstmeister/zookeeper ## 镜像
@@ -48,6 +57,9 @@ services:
       - /etc/localtime:/etc/localtime ## 挂载位置（kafka镜像和宿主机器之间时间保持一直）
     environment:
       - TZ=Asia/Shanghai
+    networks:
+      extnetwork:
+        ipv4_address: 172.19.0.12  
   # https://www.jianshu.com/p/1d7759d77ec1
   # https://blog.csdn.net/Crystalqy/article/details/94006936
   ce-kafka:
@@ -69,7 +81,9 @@ services:
     volumes:
       - ./kafka-logs:/kafka
       - /var/run/docker.sock:/var/run/docker.sock
-
+    networks:
+      extnetwork:
+        ipv4_address: 172.19.0.13
   ce-kafka-manager:
     container_name: ce-kafka-manager
     image: sheepkiller/kafka-manager
@@ -77,6 +91,9 @@ services:
       - 9020:9000
     environment:
       ZK_HOSTS: ce-zookeeper:2181
+    networks:
+      extnetwork:
+        ipv4_address: 172.19.0.14  
   ce-mongo:
     container_name: ce-mongo
     image: mongo:3.4
@@ -89,6 +106,9 @@ services:
       - "./mongo/db:/data/db"
       - "./mongo/entrypoint/:/docker-entrypoint-initdb.d/"
     command: mongod
+    networks:
+      extnetwork:
+        ipv4_address: 172.19.0.15
   ######## ce-app
   ce-app-cloud:
     container_name: ce-app-cloud
@@ -104,7 +124,9 @@ services:
     environment:
       - TZ=Asia/Shanghai
     entrypoint: java -server -Xms512m -Xmx512m -Xmn200m -Xss256k -jar -Dserver.port=7000 -Dspring.profiles.active=dev /cloud.jar
-
+    networks:
+      extnetwork:
+        ipv4_address: 172.19.0.16
   ce-app-ucenter-api:
     container_name: ce-app-ucenter-api
     image: openjdk:8
@@ -119,6 +141,9 @@ services:
     environment:
       - TZ=Asia/Shanghai
     entrypoint: java -server -Xms512m -Xmx512m -Xmn200m -Xss256k -jar -Dserver.port=6001 -Dspring.profiles.active=dev /ucenter-api.jar
+    networks:
+      extnetwork:
+        ipv4_address: 172.19.0.17
   ce-app-exchange-api:
     container_name: ce-app-exchange-api
     image: openjdk:8
@@ -133,6 +158,9 @@ services:
     environment:
       - TZ=Asia/Shanghai
     entrypoint: java -server -Xms512m -Xmx512m -Xmn200m -Xss256k -jar -Dserver.port=6003 -Dspring.profiles.active=dev /exchange-api.jar
+    networks:
+      extnetwork:
+        ipv4_address: 172.19.0.18
   ce-app-exchange:
     container_name: ce-app-exchange
     image: openjdk:8
@@ -147,6 +175,9 @@ services:
     environment:
       - TZ=Asia/Shanghai
     entrypoint: java -server -Xms512m -Xmx512m -Xmn200m -Xss256k -jar -Dserver.port=6005 -Dspring.profiles.active=dev /exchange.jar
+    networks:
+      extnetwork:
+        ipv4_address: 172.19.0.19
   ce-app-admin:
     container_name: ce-app-admin
     image: openjdk:8
@@ -161,6 +192,9 @@ services:
     environment:
       - TZ=Asia/Shanghai
     entrypoint: java -server -Xms512m -Xmx512m -Xmn200m -Xss256k -jar -Dserver.port=6010 -Dspring.profiles.active=dev /admin-api.jar
+    networks:
+      extnetwork:
+        ipv4_address: 172.19.0.20
   ce-app-open-api:
     container_name: ce-app-open-api
     image: openjdk:8
@@ -175,6 +209,9 @@ services:
     environment:
       - TZ=Asia/Shanghai
     entrypoint: java -server -Xms512m -Xmx512m -Xmn200m -Xss256k -jar -Dserver.port=7010 -Dspring.profiles.active=dev /open-api.jar
+    networks:
+      extnetwork:
+        ipv4_address: 172.19.0.21
   ce-app-chat:
     container_name: ce-app-chat
     image: openjdk:8
@@ -189,6 +226,9 @@ services:
     environment:
       - TZ=Asia/Shanghai
     entrypoint: java -server -Xms512m -Xmx512m -Xmn200m -Xss256k -jar -Dserver.port=6008 -Dspring.profiles.active=dev /chat.jar    
+    networks:
+      extnetwork:
+        ipv4_address: 172.19.0.22
   ce-app-market:
     container_name: ce-app-market
     image: openjdk:8
@@ -203,6 +243,9 @@ services:
     environment:
       - TZ=Asia/Shanghai
     entrypoint: java -server -Xms512m -Xmx512m -Xmn200m -Xss256k -jar -Dserver.port=6004 -Dspring.profiles.active=dev /market.jar    
+    networks:
+      extnetwork:
+        ipv4_address: 172.19.0.23
   ce-app-otc-api:
     container_name: ce-app-otc-api
     image: openjdk:8
@@ -217,6 +260,9 @@ services:
     environment:
       - TZ=Asia/Shanghai
     entrypoint: java -server -Xms512m -Xmx512m -Xmn200m -Xss256k -jar -Dserver.port=6006 -Dspring.profiles.active=dev /otc-api.jar
+    networks:
+      extnetwork:
+        ipv4_address: 172.19.0.24
   ce-app-wallet:
     container_name: ce-app-wallet
     image: openjdk:8
@@ -231,7 +277,9 @@ services:
     environment:
       - TZ=Asia/Shanghai
     entrypoint: java -server -Xms512m -Xmx512m -Xmn200m -Xss256k -jar -Dserver.port=7006 -Dspring.profiles.active=dev /wallet.jar
-
+    networks:
+      extnetwork:
+        ipv4_address: 172.19.0.25
   ######## ce-web
   ce-web-admin:
     container_name: ce-web-admin
@@ -245,6 +293,9 @@ services:
       - ./nginx/web-admin/conf/conf.d:/etc/nginx/conf.d
     environment:
       - TZ=Asia/Shanghai
+    networks:
+      extnetwork:
+        ipv4_address: 172.19.0.26  
   ce-web-web:
     container_name: ce-web-web
     image: nginx:latest
@@ -257,5 +308,15 @@ services:
       - ./nginx/web-web/conf/conf.d:/etc/nginx/conf.d
     environment:
       - TZ=Asia/Shanghai
+    networks:
+      extnetwork:
+        ipv4_address: 172.19.0.27
 volumes:
   ce-mysql-5.6:
+
+networks:
+   extnetwork:
+      ipam:
+         config:
+         - subnet: 172.19.0.0/16
+           gateway: 172.19.0.1
