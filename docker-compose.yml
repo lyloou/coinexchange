@@ -140,8 +140,7 @@ services:
       - ce-mongo
 
   ce-app-ucenter-api:
-    container_name: ce-app-ucenter-ap
-    - ${url_bitrade-market}i
+    container_name: ce-app-ucenter-api
     image: openjdk:8
     restart: always
     ports:
@@ -170,7 +169,6 @@ services:
       - ce-app-exchange
       - ce-app-cloud
       - ce-app-market
-      - ${url_bitrade-market}
 
   ce-app-exchange-api:
     container_name: ce-app-exchange-api
@@ -202,7 +200,6 @@ services:
       - ce-app-exchange
       - ce-app-cloud
       - ce-app-market
-      - ${url_bitrade-market}
 
   ce-app-exchange:
     container_name: ce-app-exchange
@@ -234,7 +231,6 @@ services:
       - ce-app-cloud
 
   ce-app-admin:
-    - ${url_bitrade-market}
     container_name: ce-app-admin
     image: openjdk:8
     restart: always
@@ -264,7 +260,6 @@ services:
       - ce-app-exchange
       - ce-app-cloud
       - ce-app-market
-      - ${url_bitrade-market}
 
   ce-app-open-api:
     container_name: ce-app-open-api
@@ -296,7 +291,6 @@ services:
       - ce-app-exchange
       - ce-app-cloud
       - ce-app-market
-      - ${url_bitrade-market}
 
   ce-app-chat:
     container_name: ce-app-chat
@@ -328,7 +322,6 @@ services:
       - ce-app-exchange
       - ce-app-cloud
       - ce-app-market
-      - ${url_bitrade-market}
 
   ce-app-market:
     container_name: ce-app-market
@@ -360,7 +353,6 @@ services:
       - ce-app-cloud
 
   ce-app-otc-api:
-    - ${url_bitrade-market}
     container_name: ce-app-otc-api
     image: openjdk:8
     restart: always
@@ -390,7 +382,6 @@ services:
       - ce-app-exchange
       - ce-app-cloud
       - ce-app-market
-      - ${url_bitrade-market}
 
   ce-app-wallet:
     container_name: ce-app-wallet
@@ -422,7 +413,6 @@ services:
       - ce-app-exchange
       - ce-app-cloud
       - ce-app-market
-      - ${url_bitrade-market}
 
   ######## ce-web
   ce-web-admin:
@@ -453,7 +443,6 @@ services:
       - ce-app-exchange
       - ce-app-cloud
       - ce-app-market
-      - ${url_bitrade-market}
 
   ce-web-web:
     container_name: ce-web-web
@@ -483,7 +472,6 @@ services:
       - ce-app-exchange
       - ce-app-cloud
       - ce-app-market
-      - ${url_bitrade-market}
 
 volumes:
   ce-mysql-5.6:
