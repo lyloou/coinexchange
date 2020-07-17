@@ -59,7 +59,7 @@ services:
       - TZ=Asia/Shanghai
     networks:
       extnetwork:
-        ipv4_address: 172.19.0.12  
+        ipv4_address: 172.19.0.12
   # https://www.jianshu.com/p/1d7759d77ec1
   # https://blog.csdn.net/Crystalqy/article/details/94006936
   ce-kafka:
@@ -93,7 +93,7 @@ services:
       ZK_HOSTS: ce-zookeeper:2181
     networks:
       extnetwork:
-        ipv4_address: 172.19.0.14  
+        ipv4_address: 172.19.0.14
   ce-mongo:
     container_name: ce-mongo
     image: mongo:3.4
@@ -129,15 +129,15 @@ services:
       extnetwork:
         ipv4_address: 172.19.0.16
     extra_hosts:
-      - "bitrade-market:172.19.0.23"    
+      - bitrade-market: 172.19.0.23
     depends_on:
-        - ce-mysql
-        - ce-redis1
-        - ce-redis2
-        - ce-zookeeper
-        - ce-kafka
-        - ce-kafka-manager
-        - ce-mongo
+      - ce-mysql
+      - ce-redis1
+      - ce-redis2
+      - ce-zookeeper
+      - ce-kafka
+      - ce-kafka-manager
+      - ce-mongo
 
   ce-app-ucenter-api:
     container_name: ce-app-ucenter-api
@@ -157,7 +157,7 @@ services:
       extnetwork:
         ipv4_address: 172.19.0.17
     extra_hosts:
-      - "bitrade-market:172.19.0.23"    
+      - bitrade-market: 172.19.0.23
     depends_on:
       - ce-mysql
       - ce-redis1
@@ -188,7 +188,7 @@ services:
       extnetwork:
         ipv4_address: 172.19.0.18
     extra_hosts:
-      - "bitrade-market:172.19.0.23"    
+      - bitrade-market: 172.19.0.23
     depends_on:
       - ce-mysql
       - ce-redis1
@@ -219,7 +219,7 @@ services:
       extnetwork:
         ipv4_address: 172.19.0.19
     extra_hosts:
-      - "bitrade-market:172.19.0.23"    
+      - bitrade-market: 172.19.0.23
     depends_on:
       - ce-mysql
       - ce-redis1
@@ -229,7 +229,7 @@ services:
       - ce-kafka-manager
       - ce-mongo
       - ce-app-cloud
-  
+
   ce-app-admin:
     container_name: ce-app-admin
     image: openjdk:8
@@ -248,7 +248,7 @@ services:
       extnetwork:
         ipv4_address: 172.19.0.20
     extra_hosts:
-      - "bitrade-market:172.19.0.23"    
+      - bitrade-market: 172.19.0.23
     depends_on:
       - ce-mysql
       - ce-redis1
@@ -260,7 +260,7 @@ services:
       - ce-app-exchange
       - ce-app-cloud
       - ce-app-market
-  
+
   ce-app-open-api:
     container_name: ce-app-open-api
     image: openjdk:8
@@ -279,7 +279,7 @@ services:
       extnetwork:
         ipv4_address: 172.19.0.21
     extra_hosts:
-      - "bitrade-market:172.19.0.23"    
+      - bitrade-market: 172.19.0.23
     depends_on:
       - ce-mysql
       - ce-redis1
@@ -305,12 +305,12 @@ services:
       - /etc/localtime:/etc/localtime
     environment:
       - TZ=Asia/Shanghai
-    entrypoint: java -server -Xms512m -Xmx512m -Xmn200m -Xss256k -jar -Dserver.port=6008 -Dspring.profiles.active=dev /chat.jar    
+    entrypoint: java -server -Xms512m -Xmx512m -Xmn200m -Xss256k -jar -Dserver.port=6008 -Dspring.profiles.active=dev /chat.jar
     networks:
       extnetwork:
         ipv4_address: 172.19.0.22
     extra_hosts:
-      - "bitrade-market:172.19.0.23"    
+      - bitrade-market: 172.19.0.23
     depends_on:
       - ce-mysql
       - ce-redis1
@@ -336,12 +336,12 @@ services:
       - /etc/localtime:/etc/localtime
     environment:
       - TZ=Asia/Shanghai
-    entrypoint: java -server -Xms512m -Xmx512m -Xmn200m -Xss256k -jar -Dserver.port=6004 -Dspring.profiles.active=dev /market.jar    
+    entrypoint: java -server -Xms512m -Xmx512m -Xmn200m -Xss256k -jar -Dserver.port=6004 -Dspring.profiles.active=dev /market.jar
     networks:
       extnetwork:
         ipv4_address: 172.19.0.23
     extra_hosts:
-      - "bitrade-market:172.19.0.23"    
+      - bitrade-market: 172.19.0.23
     depends_on:
       - ce-mysql
       - ce-redis1
@@ -370,7 +370,7 @@ services:
       extnetwork:
         ipv4_address: 172.19.0.24
     extra_hosts:
-      - "bitrade-market:172.19.0.23"    
+      - bitrade-market: 172.19.0.23
     depends_on:
       - ce-mysql
       - ce-redis1
@@ -401,7 +401,7 @@ services:
       extnetwork:
         ipv4_address: 172.19.0.25
     extra_hosts:
-      - "bitrade-market:172.19.0.23"    
+      - bitrade-market: 172.19.0.23
     depends_on:
       - ce-mysql
       - ce-redis1
@@ -429,9 +429,9 @@ services:
       - TZ=Asia/Shanghai
     networks:
       extnetwork:
-        ipv4_address: 172.19.0.26  
+        ipv4_address: 172.19.0.26
     extra_hosts:
-      - "bitrade-market:172.19.0.23"    
+      - bitrade-market: 172.19.0.23
     depends_on:
       - ce-mysql
       - ce-redis1
@@ -460,7 +460,7 @@ services:
       extnetwork:
         ipv4_address: 172.19.0.27
     extra_hosts:
-      - "bitrade-market:172.19.0.23"    
+      - bitrade-market: 172.19.0.23
     depends_on:
       - ce-mysql
       - ce-redis1
@@ -472,13 +472,13 @@ services:
       - ce-app-exchange
       - ce-app-cloud
       - ce-app-market
-      
+
 volumes:
   ce-mysql-5.6:
 
 networks:
-   extnetwork:
-      ipam:
-         config:
-         - subnet: 172.19.0.0/16
-           gateway: 172.19.0.1
+  extnetwork:
+    ipam:
+      config:
+        - subnet: 172.19.0.0/16
+          gateway: 172.19.0.1
