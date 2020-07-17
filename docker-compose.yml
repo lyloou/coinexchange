@@ -124,7 +124,7 @@ services:
       - /etc/localtime:/etc/localtime
     environment:
       - TZ=Asia/Shanghai
-    entrypoint: java -server -Xms512m -Xmx512m -Xmn200m -Xss256k -jar -Dserver.port=7000 -Dspring.profiles.active=dev /cloud.jar
+    entrypoint: java -server -Xms512m -Xmx512m -Xmn200m -Xss256k -jar -Dserver.port=7000 -Dspring.profiles.active=${ENV} /cloud.jar
     networks:
       extnetwork:
         ipv4_address: ${url_app_cloud}
@@ -152,7 +152,7 @@ services:
       - /etc/localtime:/etc/localtime
     environment:
       - TZ=Asia/Shanghai
-    entrypoint: java -server -Xms512m -Xmx512m -Xmn200m -Xss256k -jar -Dserver.port=6001 -Dspring.profiles.active=dev /ucenter-api.jar
+    entrypoint: java -server -Xms512m -Xmx512m -Xmn200m -Xss256k -jar -Dserver.port=6001 -Dspring.profiles.active=${ENV} /ucenter-api.jar
     networks:
       extnetwork:
         ipv4_address: ${url_app_ucenter_api}
@@ -183,7 +183,7 @@ services:
       - /etc/localtime:/etc/localtime
     environment:
       - TZ=Asia/Shanghai
-    entrypoint: java -server -Xms512m -Xmx512m -Xmn200m -Xss256k -jar -Dserver.port=6003 -Dspring.profiles.active=dev /exchange-api.jar
+    entrypoint: java -server -Xms512m -Xmx512m -Xmn200m -Xss256k -jar -Dserver.port=6003 -Dspring.profiles.active=${ENV} /exchange-api.jar
     networks:
       extnetwork:
         ipv4_address: ${url_app_exchange-api}
@@ -214,7 +214,7 @@ services:
       - /etc/localtime:/etc/localtime
     environment:
       - TZ=Asia/Shanghai
-    entrypoint: java -server -Xms512m -Xmx512m -Xmn200m -Xss256k -jar -Dserver.port=6005 -Dspring.profiles.active=dev /exchange.jar
+    entrypoint: java -server -Xms512m -Xmx512m -Xmn200m -Xss256k -jar -Dserver.port=6005 -Dspring.profiles.active=${ENV} /exchange.jar
     networks:
       extnetwork:
         ipv4_address: ${url_app_exchange}
@@ -243,7 +243,7 @@ services:
       - /etc/localtime:/etc/localtime
     environment:
       - TZ=Asia/Shanghai
-    entrypoint: java -server -Xms512m -Xmx512m -Xmn200m -Xss256k -jar -Dserver.port=6010 -Dspring.profiles.active=dev /admin-api.jar
+    entrypoint: java -server -Xms512m -Xmx512m -Xmn200m -Xss256k -jar -Dserver.port=6010 -Dspring.profiles.active=${ENV} /admin-api.jar
     networks:
       extnetwork:
         ipv4_address: ${url_app_admin}
@@ -274,7 +274,7 @@ services:
       - /etc/localtime:/etc/localtime
     environment:
       - TZ=Asia/Shanghai
-    entrypoint: java -server -Xms512m -Xmx512m -Xmn200m -Xss256k -jar -Dserver.port=7010 -Dspring.profiles.active=dev /open-api.jar
+    entrypoint: java -server -Xms512m -Xmx512m -Xmn200m -Xss256k -jar -Dserver.port=7010 -Dspring.profiles.active=${ENV} /open-api.jar
     networks:
       extnetwork:
         ipv4_address: ${url_app_open_api}
@@ -305,7 +305,7 @@ services:
       - /etc/localtime:/etc/localtime
     environment:
       - TZ=Asia/Shanghai
-    entrypoint: java -server -Xms512m -Xmx512m -Xmn200m -Xss256k -jar -Dserver.port=6008 -Dspring.profiles.active=dev /chat.jar
+    entrypoint: java -server -Xms512m -Xmx512m -Xmn200m -Xss256k -jar -Dserver.port=6008 -Dspring.profiles.active=${ENV} /chat.jar
     networks:
       extnetwork:
         ipv4_address: ${url_app_chat}
@@ -336,7 +336,7 @@ services:
       - /etc/localtime:/etc/localtime
     environment:
       - TZ=Asia/Shanghai
-    entrypoint: java -server -Xms512m -Xmx512m -Xmn200m -Xss256k -jar -Dserver.port=6004 -Dspring.profiles.active=dev /market.jar
+    entrypoint: java -server -Xms512m -Xmx512m -Xmn200m -Xss256k -jar -Dserver.port=6004 -Dspring.profiles.active=${ENV} /market.jar
     networks:
       extnetwork:
         ipv4_address: ${url_app_market}
@@ -365,7 +365,7 @@ services:
       - /etc/localtime:/etc/localtime
     environment:
       - TZ=Asia/Shanghai
-    entrypoint: java -server -Xms512m -Xmx512m -Xmn200m -Xss256k -jar -Dserver.port=6006 -Dspring.profiles.active=dev /otc-api.jar
+    entrypoint: java -server -Xms512m -Xmx512m -Xmn200m -Xss256k -jar -Dserver.port=6006 -Dspring.profiles.active=${ENV} /otc-api.jar
     networks:
       extnetwork:
         ipv4_address: ${url_app_otc_api}
@@ -396,7 +396,7 @@ services:
       - /etc/localtime:/etc/localtime
     environment:
       - TZ=Asia/Shanghai
-    entrypoint: java -server -Xms512m -Xmx512m -Xmn200m -Xss256k -jar -Dserver.port=7006 -Dspring.profiles.active=dev /wallet.jar
+    entrypoint: java -server -Xms512m -Xmx512m -Xmn200m -Xss256k -jar -Dserver.port=7006 -Dspring.profiles.active=${ENV} /wallet.jar
     networks:
       extnetwork:
         ipv4_address: ${url_app_wallet}
