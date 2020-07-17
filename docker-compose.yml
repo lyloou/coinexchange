@@ -129,7 +129,7 @@ services:
       extnetwork:
         ipv4_address: 172.19.0.16
     extra_hosts:
-      - bitrade-market: 172.19.0.23
+      - "bitrade-market: 172.19.0.23"
     depends_on:
       - ce-mysql
       - ce-redis1
@@ -157,7 +157,7 @@ services:
       extnetwork:
         ipv4_address: 172.19.0.17
     extra_hosts:
-      - bitrade-market: 172.19.0.23
+      - "bitrade-market: 172.19.0.23"
     depends_on:
       - ce-mysql
       - ce-redis1
@@ -188,7 +188,7 @@ services:
       extnetwork:
         ipv4_address: 172.19.0.18
     extra_hosts:
-      - bitrade-market: 172.19.0.23
+      - "bitrade-market: 172.19.0.23"
     depends_on:
       - ce-mysql
       - ce-redis1
@@ -219,7 +219,7 @@ services:
       extnetwork:
         ipv4_address: 172.19.0.19
     extra_hosts:
-      - bitrade-market: 172.19.0.23
+      - "bitrade-market: 172.19.0.23"
     depends_on:
       - ce-mysql
       - ce-redis1
@@ -248,7 +248,7 @@ services:
       extnetwork:
         ipv4_address: 172.19.0.20
     extra_hosts:
-      - bitrade-market: 172.19.0.23
+      - "bitrade-market: 172.19.0.23"
     depends_on:
       - ce-mysql
       - ce-redis1
@@ -279,7 +279,7 @@ services:
       extnetwork:
         ipv4_address: 172.19.0.21
     extra_hosts:
-      - bitrade-market: 172.19.0.23
+      - "bitrade-market: 172.19.0.23"
     depends_on:
       - ce-mysql
       - ce-redis1
@@ -310,7 +310,7 @@ services:
       extnetwork:
         ipv4_address: 172.19.0.22
     extra_hosts:
-      - bitrade-market: 172.19.0.23
+      - "bitrade-market: 172.19.0.23"
     depends_on:
       - ce-mysql
       - ce-redis1
@@ -341,7 +341,7 @@ services:
       extnetwork:
         ipv4_address: 172.19.0.23
     extra_hosts:
-      - bitrade-market: 172.19.0.23
+      - "bitrade-market: 172.19.0.23"
     depends_on:
       - ce-mysql
       - ce-redis1
@@ -370,7 +370,7 @@ services:
       extnetwork:
         ipv4_address: 172.19.0.24
     extra_hosts:
-      - bitrade-market: 172.19.0.23
+      - "bitrade-market: 172.19.0.23"
     depends_on:
       - ce-mysql
       - ce-redis1
@@ -401,7 +401,7 @@ services:
       extnetwork:
         ipv4_address: 172.19.0.25
     extra_hosts:
-      - bitrade-market: 172.19.0.23
+      - "bitrade-market: 172.19.0.23"
     depends_on:
       - ce-mysql
       - ce-redis1
@@ -431,7 +431,7 @@ services:
       extnetwork:
         ipv4_address: 172.19.0.26
     extra_hosts:
-      - bitrade-market: 172.19.0.23
+      - "bitrade-market: 172.19.0.23"
     depends_on:
       - ce-mysql
       - ce-redis1
@@ -460,7 +460,7 @@ services:
       extnetwork:
         ipv4_address: 172.19.0.27
     extra_hosts:
-      - bitrade-market: 172.19.0.23
+      - "bitrade-market: 172.19.0.23"
     depends_on:
       - ce-mysql
       - ce-redis1
