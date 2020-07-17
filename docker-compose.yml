@@ -423,7 +423,6 @@ services:
       - 8090:80
     volumes:
       - ./app/web-admin/dist:/usr/share/nginx/html
-      - ./app/introduction/dist:/usr/share/nginx/introduction
       - ./nginx/web-admin/conf/nginx.conf:/etc/nginx/nginx.conf
       - ./nginx/web-admin/conf/conf.d:/etc/nginx/conf.d
     environment:
