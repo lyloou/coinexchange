@@ -186,7 +186,7 @@ services:
     entrypoint: java -server -Xms512m -Xmx512m -Xmn200m -Xss256k -jar -Dserver.port=6003 -Dspring.profiles.active=${ENV} /exchange-api.jar
     networks:
       extnetwork:
-        ipv4_address: ${url_app_exchange-api}
+        ipv4_address: ${url_app_exchange_api}
     extra_hosts:
       - ${host_market}
     depends_on:
