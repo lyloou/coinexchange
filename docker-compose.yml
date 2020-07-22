@@ -419,7 +419,7 @@ services:
     image: nginx:latest
     restart: always
     ports:
-      - 8091:80
+      - 80:80
     volumes:
       - ./app/web-web/dist:/web/app/web-web
       - ./app/web-admin/dist:/web/app/web-admin
