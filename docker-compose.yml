@@ -301,6 +301,7 @@ services:
     volumes:
       - ./app/chat/chat.jar:/chat.jar
       - ./logs:/mnt/logs/
+      - ./app/chat/web/:/web/
       # 指定容器时间为宿主机时间
       - /etc/localtime:/etc/localtime
     environment:
