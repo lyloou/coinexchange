@@ -298,6 +298,7 @@ services:
     restart: always
     ports:
       - 9008:6008
+      - 28902:28902
     volumes:
       - ./app/chat/chat.jar:/chat.jar
       - ./logs:/mnt/logs/
@@ -330,6 +331,7 @@ services:
     restart: always
     ports:
       - 9004:6004
+      - 28901:28901
     volumes:
       - ./app/market/market.jar:/market.jar
       - ./logs:/mnt/logs/
