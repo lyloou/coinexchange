@@ -8,6 +8,8 @@ services:
       - 3308:3306
     volumes:
       - ce-mysql-5.6:/var/lib/mysql
+      - /etc/localtime:/etc/localtime
+      - /etc/timezone:/etc/timezone
     environment:
       - TZ=Asia/Shanghai
       - MYSQL_ROOT_PASSWORD=12345678
@@ -24,6 +26,8 @@ services:
       - 6380:6379
     volumes:
       - ./redis/redis1/conf/redis.conf:/usr/local/etc/redis/redis.conf
+      - /etc/localtime:/etc/localtime
+      - /etc/timezone:/etc/timezone
     environment:
       - TZ=Asia/Shanghai
     entrypoint: redis-server /usr/local/etc/redis/redis.conf
@@ -39,6 +43,8 @@ services:
       - 6381:6379
     volumes:
       - ./redis/redis2/conf/redis.conf:/usr/local/etc/redis/redis.conf
+      - /etc/localtime:/etc/localtime
+      - /etc/timezone:/etc/timezone
     environment:
       - TZ=Asia/Shanghai
     entrypoint: redis-server /usr/local/etc/redis/redis.conf
@@ -54,7 +60,8 @@ services:
       - 2182:2181
     volumes:
       - ./zookeeper/conf:/conf
-      - /etc/localtime:/etc/localtime ## 挂载位置（kafka镜像和宿主机器之间时间保持一直）
+      - /etc/localtime:/etc/localtime
+      - /etc/timezone:/etc/timezone
     environment:
       - TZ=Asia/Shanghai
     networks:
@@ -81,6 +88,8 @@ services:
     volumes:
       - ./kafka-logs:/kafka
       - /var/run/docker.sock:/var/run/docker.sock
+      - /etc/localtime:/etc/localtime
+      - /etc/timezone:/etc/timezone
     networks:
       extnetwork:
         ipv4_address: ${url_kafka}
@@ -94,6 +103,9 @@ services:
     networks:
       extnetwork:
         ipv4_address: ${url_kafka_manager}
+    volumes:
+      - /etc/localtime:/etc/localtime
+      - /etc/timezone:/etc/timezone
   ce-mongo:
     container_name: ce-mongo
     image: mongo:3.4
@@ -105,6 +117,8 @@ services:
     volumes:
       - "./mongo/db:/data/db"
       - "./mongo/entrypoint/:/docker-entrypoint-initdb.d/"
+      - /etc/localtime:/etc/localtime
+      - /etc/timezone:/etc/timezone
     command: mongod
     networks:
       extnetwork:
@@ -122,6 +136,7 @@ services:
       - ./logs:/mnt/logs/
       # 指定容器时间为宿主机时间
       - /etc/localtime:/etc/localtime
+      - /etc/timezone:/etc/timezone
     environment:
       - TZ=Asia/Shanghai
     entrypoint: java -server -Xms512m -Xmx512m -Xmn200m -Xss256k -jar -Dserver.port=7000 -Dspring.profiles.active=${ENV} /cloud.jar
@@ -148,8 +163,8 @@ services:
     volumes:
       - ./app/ucenter-api/ucenter-api.jar:/ucenter-api.jar
       - ./logs:/mnt/logs/
-      # 指定容器时间为宿主机时间
       - /etc/localtime:/etc/localtime
+      - /etc/timezone:/etc/timezone
     environment:
       - TZ=Asia/Shanghai
     entrypoint: java -server -Xms512m -Xmx512m -Xmn200m -Xss256k -jar -Dserver.port=6001 -Dspring.profiles.active=${ENV} /ucenter-api.jar
@@ -179,8 +194,8 @@ services:
     volumes:
       - ./app/exchange-api/exchange-api.jar:/exchange-api.jar
       - ./logs:/mnt/logs/
-      # 指定容器时间为宿主机时间
       - /etc/localtime:/etc/localtime
+      - /etc/timezone:/etc/timezone
     environment:
       - TZ=Asia/Shanghai
     entrypoint: java -server -Xms512m -Xmx512m -Xmn200m -Xss256k -jar -Dserver.port=6003 -Dspring.profiles.active=${ENV} /exchange-api.jar
@@ -210,8 +225,8 @@ services:
     volumes:
       - ./app/exchange/exchange.jar:/exchange.jar
       - ./logs:/mnt/logs/
-      # 指定容器时间为宿主机时间
       - /etc/localtime:/etc/localtime
+      - /etc/timezone:/etc/timezone
     environment:
       - TZ=Asia/Shanghai
     entrypoint: java -server -Xms512m -Xmx512m -Xmn200m -Xss256k -jar -Dserver.port=6005 -Dspring.profiles.active=${ENV} /exchange.jar
@@ -239,8 +254,8 @@ services:
     volumes:
       - ./app/admin/admin-api.jar:/admin-api.jar
       - ./logs:/mnt/logs/
-      # 指定容器时间为宿主机时间
       - /etc/localtime:/etc/localtime
+      - /etc/timezone:/etc/timezone
     environment:
       - TZ=Asia/Shanghai
     entrypoint: java -server -Xms512m -Xmx512m -Xmn200m -Xss256k -jar -Dserver.port=6010 -Dspring.profiles.active=${ENV} /admin-api.jar
@@ -270,8 +285,8 @@ services:
     volumes:
       - ./app/open-api/open-api.jar:/open-api.jar
       - ./logs:/mnt/logs/
-      # 指定容器时间为宿主机时间
       - /etc/localtime:/etc/localtime
+      - /etc/timezone:/etc/timezone
     environment:
       - TZ=Asia/Shanghai
     entrypoint: java -server -Xms512m -Xmx512m -Xmn200m -Xss256k -jar -Dserver.port=7010 -Dspring.profiles.active=${ENV} /open-api.jar
@@ -303,8 +318,8 @@ services:
       - ./app/chat/chat.jar:/chat.jar
       - ./logs:/mnt/logs/
       - ./app/chat/web/:/web/
-      # 指定容器时间为宿主机时间
       - /etc/localtime:/etc/localtime
+      - /etc/timezone:/etc/timezone
     environment:
       - TZ=Asia/Shanghai
     entrypoint: java -server -Xms512m -Xmx512m -Xmn200m -Xss256k -jar -Dserver.port=6008 -Dspring.profiles.active=${ENV} /chat.jar
@@ -335,8 +350,8 @@ services:
     volumes:
       - ./app/market/market.jar:/market.jar
       - ./logs:/mnt/logs/
-      # 指定容器时间为宿主机时间
       - /etc/localtime:/etc/localtime
+      - /etc/timezone:/etc/timezone
     environment:
       - TZ=Asia/Shanghai
     entrypoint: java -server -Xms512m -Xmx512m -Xmn200m -Xss256k -jar -Dserver.port=6004 -Dspring.profiles.active=${ENV} /market.jar
@@ -364,8 +379,8 @@ services:
     volumes:
       - ./app/otc-api/otc-api.jar:/otc-api.jar
       - ./logs:/mnt/logs/
-      # 指定容器时间为宿主机时间
       - /etc/localtime:/etc/localtime
+      - /etc/timezone:/etc/timezone
     environment:
       - TZ=Asia/Shanghai
     entrypoint: java -server -Xms512m -Xmx512m -Xmn200m -Xss256k -jar -Dserver.port=6006 -Dspring.profiles.active=${ENV} /otc-api.jar
@@ -395,8 +410,8 @@ services:
     volumes:
       - ./app/wallet/wallet.jar:/wallet.jar
       - ./logs:/mnt/logs/
-      # 指定容器时间为宿主机时间
       - /etc/localtime:/etc/localtime
+      - /etc/timezone:/etc/timezone
     environment:
       - TZ=Asia/Shanghai
     entrypoint: java -server -Xms512m -Xmx512m -Xmn200m -Xss256k -jar -Dserver.port=7006 -Dspring.profiles.active=${ENV} /wallet.jar
@@ -431,6 +446,8 @@ services:
       - ./app/web-admin/dist:/web/app/web-admin
       - ./nginx/conf/nginx.conf:/etc/nginx/nginx.conf
       - ./nginx/conf/conf.d:/etc/nginx/conf.d
+      - /etc/localtime:/etc/localtime
+      - /etc/timezone:/etc/timezone
     environment:
       - TZ=Asia/Shanghai
     networks:
