@@ -15,9 +15,6 @@ services:
       - MYSQL_ROOT_PASSWORD=12345678
       - /etc/localtime:/etc/localtime
     command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
-    networks:
-      extnetwork:
-        ipv4_address: ${url_mysql}
   ce-redis1:
     container_name: ce-redis1
     image: redis:latest
@@ -32,9 +29,6 @@ services:
       - TZ=Asia/Shanghai
     entrypoint: redis-server /usr/local/etc/redis/redis.conf
     # command: --requirepass "Credit2016Admin"
-    networks:
-      extnetwork:
-        ipv4_address: ${url_redis1}
   ce-redis2:
     container_name: ce-redis2
     image: redis:latest
@@ -49,9 +43,6 @@ services:
       - TZ=Asia/Shanghai
     entrypoint: redis-server /usr/local/etc/redis/redis.conf
     # command: --requirepass "Credit2016Admin"
-    networks:
-      extnetwork:
-        ipv4_address: ${url_redis2}
   ce-zookeeper:
     container_name: ce-zookeeper
     image: wurstmeister/zookeeper ## 镜像
@@ -64,9 +55,6 @@ services:
       - /etc/timezone:/etc/timezone
     environment:
       - TZ=Asia/Shanghai
-    networks:
-      extnetwork:
-        ipv4_address: ${url_zookeeper}
   # https://www.jianshu.com/p/1d7759d77ec1
   # https://blog.csdn.net/Crystalqy/article/details/94006936
   ce-kafka:
@@ -90,9 +78,6 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
       - /etc/localtime:/etc/localtime
       - /etc/timezone:/etc/timezone
-    networks:
-      extnetwork:
-        ipv4_address: ${url_kafka}
   ce-kafka-manager:
     container_name: ce-kafka-manager
     image: sheepkiller/kafka-manager
@@ -100,9 +85,6 @@ services:
       - 9020:9000
     environment:
       ZK_HOSTS: ce-zookeeper:2181
-    networks:
-      extnetwork:
-        ipv4_address: ${url_kafka_manager}
     volumes:
       - /etc/localtime:/etc/localtime
       - /etc/timezone:/etc/timezone
@@ -120,9 +102,6 @@ services:
       - /etc/localtime:/etc/localtime
       - /etc/timezone:/etc/timezone
     command: mongod
-    networks:
-      extnetwork:
-        ipv4_address: ${url_mongo}
 
   ######## ce-app
   ce-app-cloud:
@@ -140,9 +119,6 @@ services:
     environment:
       - TZ=Asia/Shanghai
     entrypoint: java -server -Xms512m -Xmx512m -Xmn200m -Xss256k -jar -Dserver.port=7000 -Dspring.profiles.active=${ENV} /cloud.jar
-    networks:
-      extnetwork:
-        ipv4_address: ${url_app_cloud}
     depends_on:
       - ce-mysql
       - ce-redis1
@@ -166,9 +142,6 @@ services:
     environment:
       - TZ=Asia/Shanghai
     entrypoint: java -server -Xms512m -Xmx512m -Xmn200m -Xss256k -jar -Dserver.port=6001 -Dspring.profiles.active=${ENV} /ucenter-api.jar
-    networks:
-      extnetwork:
-        ipv4_address: ${url_app_ucenter_api}
     depends_on:
       - ce-mysql
       - ce-redis1
@@ -195,9 +168,6 @@ services:
     environment:
       - TZ=Asia/Shanghai
     entrypoint: java -server -Xms512m -Xmx512m -Xmn200m -Xss256k -jar -Dserver.port=6003 -Dspring.profiles.active=${ENV} /exchange-api.jar
-    networks:
-      extnetwork:
-        ipv4_address: ${url_app_exchange_api}
     depends_on:
       - ce-mysql
       - ce-redis1
@@ -224,9 +194,6 @@ services:
     environment:
       - TZ=Asia/Shanghai
     entrypoint: java -server -Xms512m -Xmx512m -Xmn200m -Xss256k -jar -Dserver.port=6005 -Dspring.profiles.active=${ENV} /exchange.jar
-    networks:
-      extnetwork:
-        ipv4_address: ${url_app_exchange}
     depends_on:
       - ce-mysql
       - ce-redis1
@@ -251,9 +218,6 @@ services:
     environment:
       - TZ=Asia/Shanghai
     entrypoint: java -server -Xms512m -Xmx512m -Xmn200m -Xss256k -jar -Dserver.port=6010 -Dspring.profiles.active=${ENV} /admin-api.jar
-    networks:
-      extnetwork:
-        ipv4_address: ${url_app_admin}
     depends_on:
       - ce-mysql
       - ce-redis1
@@ -280,9 +244,6 @@ services:
     environment:
       - TZ=Asia/Shanghai
     entrypoint: java -server -Xms512m -Xmx512m -Xmn200m -Xss256k -jar -Dserver.port=7010 -Dspring.profiles.active=${ENV} /open-api.jar
-    networks:
-      extnetwork:
-        ipv4_address: ${url_app_open_api}
     depends_on:
       - ce-mysql
       - ce-redis1
@@ -311,9 +272,6 @@ services:
     environment:
       - TZ=Asia/Shanghai
     entrypoint: java -server -Xms512m -Xmx512m -Xmn200m -Xss256k -jar -Dserver.port=6008 -Dspring.profiles.active=${ENV} /chat.jar
-    networks:
-      extnetwork:
-        ipv4_address: ${url_app_chat}
     depends_on:
       - ce-mysql
       - ce-redis1
@@ -341,9 +299,6 @@ services:
     environment:
       - TZ=Asia/Shanghai
     entrypoint: java -server -Xms512m -Xmx512m -Xmn200m -Xss256k -jar -Dserver.port=6004 -Dspring.profiles.active=${ENV} /market.jar
-    networks:
-      extnetwork:
-        ipv4_address: ${url_app_market}
     depends_on:
       - ce-mysql
       - ce-redis1
@@ -368,9 +323,6 @@ services:
     environment:
       - TZ=Asia/Shanghai
     entrypoint: java -server -Xms512m -Xmx512m -Xmn200m -Xss256k -jar -Dserver.port=6006 -Dspring.profiles.active=${ENV} /otc-api.jar
-    networks:
-      extnetwork:
-        ipv4_address: ${url_app_otc_api}
     depends_on:
       - ce-mysql
       - ce-redis1
@@ -397,9 +349,6 @@ services:
     environment:
       - TZ=Asia/Shanghai
     entrypoint: java -server -Xms512m -Xmx512m -Xmn200m -Xss256k -jar -Dserver.port=7006 -Dspring.profiles.active=${ENV} /wallet.jar
-    networks:
-      extnetwork:
-        ipv4_address: ${url_app_wallet}
     depends_on:
       - ce-mysql
       - ce-redis1
@@ -427,9 +376,6 @@ services:
       - /etc/timezone:/etc/timezone
     environment:
       - TZ=Asia/Shanghai
-    networks:
-      extnetwork:
-        ipv4_address: ${url_web_web}
     depends_on:
       - ce-mysql
       - ce-redis1
