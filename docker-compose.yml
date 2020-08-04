@@ -125,7 +125,7 @@ services:
     ports:
       - 7000:7000
     volumes:
-      - ./app/cloud:/app
+      - ./app/cloud/:/app/
       - ./logs:/mnt/logs/
       # 指定容器时间为宿主机时间
       - /etc/localtime:/etc/localtime
@@ -151,7 +151,7 @@ services:
     ports:
       - 9001:6001
     volumes:
-      - ./app/ucenter-api:/app
+      - ./app/ucenter-api/:/app/
       - ./logs:/mnt/logs/
       - /etc/localtime:/etc/localtime
       - /etc/timezone:/etc/timezone
@@ -179,7 +179,7 @@ services:
     ports:
       - 9003:6003
     volumes:
-      - ./app/exchange-api:/app
+      - ./app/exchange-api/:/app/
       - ./logs:/mnt/logs/
       - /etc/localtime:/etc/localtime
       - /etc/timezone:/etc/timezone
@@ -207,7 +207,7 @@ services:
     ports:
       - 9005:6005
     volumes:
-      - ./app/exchange:/app
+      - ./app/exchange/:/app/
       - ./logs:/mnt/logs/
       - /etc/localtime:/etc/localtime
       - /etc/timezone:/etc/timezone
@@ -233,7 +233,7 @@ services:
     ports:
       - 9010:6010
     volumes:
-      - ./app/admin-api:/app
+      - ./app/admin-api/:/app/
       - ./logs:/mnt/logs/
       - /etc/localtime:/etc/localtime
       - /etc/timezone:/etc/timezone
@@ -261,7 +261,7 @@ services:
     ports:
       - 9011:7010
     volumes:
-      - ./app/open-api:/app
+      - ./app/open-api/:/app/
       - ./logs:/mnt/logs/
       - /etc/localtime:/etc/localtime
       - /etc/timezone:/etc/timezone
@@ -290,7 +290,7 @@ services:
       - 9008:6008
       - 28902:28902
     volumes:
-      - ./app/chat:/app
+      - ./app/chat/:/app/
       - ./logs:/mnt/logs/
       - ./app/chat/web/:/web/
       - /etc/localtime:/etc/localtime
@@ -320,7 +320,7 @@ services:
       - 9004:6004
       - 28901:28901
     volumes:
-      - ./app/market:/app
+      - ./app/market/:/app/
       - ./logs:/mnt/logs/
       - /etc/localtime:/etc/localtime
       - /etc/timezone:/etc/timezone
@@ -346,7 +346,7 @@ services:
     ports:
       - 9006:6006
     volumes:
-      - ./app/otc-api:/app
+      - ./app/otc-api/:/app/
       - ./logs:/mnt/logs/
       - /etc/localtime:/etc/localtime
       - /etc/timezone:/etc/timezone
@@ -374,7 +374,7 @@ services:
     ports:
       - 9007:7006
     volumes:
-      - ./app/wallet:/app
+      - ./app/wallet/:/app/
       - ./logs:/mnt/logs/
       - /etc/localtime:/etc/localtime
       - /etc/timezone:/etc/timezone
