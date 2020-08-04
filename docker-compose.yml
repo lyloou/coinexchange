@@ -233,7 +233,9 @@ services:
     ports:
       - 9010:6010
     volumes:
-      - ./app/admin-api/:/app/
+      - ./app/admin-api/admin-api.jar:/app/admin-api.jar
+      - ./app/admin-api/lib:/app/lib
+      - ./app/admin-api/config:/app/config
       - ./logs:/mnt/logs/
       - /etc/localtime:/etc/localtime
       - /etc/timezone:/etc/timezone
@@ -320,7 +322,9 @@ services:
       - 9004:6004
       - 28901:28901
     volumes:
-      - ./app/market/:/app/
+      - ./app/market/market.jar:/app/market.jar
+      - ./app/market/lib:/app/lib
+      - ./app/market/config:/app/config
       - ./logs:/mnt/logs/
       - /etc/localtime:/etc/localtime
       - /etc/timezone:/etc/timezone
