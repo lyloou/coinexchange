@@ -132,7 +132,7 @@ services:
       - /etc/timezone:/etc/timezone
     environment:
       - TZ=Asia/Shanghai
-    entrypoint: java -server -Duser.dir=/app/ -Xms512m -Xmx512m -Dloader.path=/app/lib,/app/config -jar /app/*.jar
+    entrypoint: java -server -Duser.dir=/app/ -Xms512m -Xmx512m -Dloader.path=/app/lib,/app/config -jar /app/cloud.jar
     networks:
       extnetwork:
     depends_on:
@@ -157,7 +157,7 @@ services:
       - /etc/timezone:/etc/timezone
     environment:
       - TZ=Asia/Shanghai
-    entrypoint: java -server -Duser.dir=/app/ -Xms512m -Xmx512m -Dloader.path=/app/lib,/app/config -jar /app/*.jar
+    entrypoint: java -server -Duser.dir=/app/ -Xms512m -Xmx512m -Dloader.path=/app/lib,/app/config -jar /app/ucenter-api.jar
     networks:
       extnetwork:
     depends_on:
@@ -185,7 +185,7 @@ services:
       - /etc/timezone:/etc/timezone
     environment:
       - TZ=Asia/Shanghai
-    entrypoint: java -server -Duser.dir=/app/ -Xms512m -Xmx512m -Dloader.path=/app/lib,/app/config -jar /app/*.jar
+    entrypoint: java -server -Duser.dir=/app/ -Xms512m -Xmx512m -Dloader.path=/app/lib,/app/config -jar /app/exchange-api.jar
     networks:
       extnetwork:
     depends_on:
@@ -213,7 +213,7 @@ services:
       - /etc/timezone:/etc/timezone
     environment:
       - TZ=Asia/Shanghai
-    entrypoint: java -server -Duser.dir=/app/ -Xms512m -Xmx512m -Dloader.path=/app/lib,/app/config -jar /app/*.jar
+    entrypoint: java -server -Duser.dir=/app/ -Xms512m -Xmx512m -Dloader.path=/app/lib,/app/config -jar /app/exchange.jar
     networks:
       extnetwork:
     depends_on:
@@ -239,7 +239,7 @@ services:
       - /etc/timezone:/etc/timezone
     environment:
       - TZ=Asia/Shanghai
-    entrypoint: java -server -Duser.dir=/app/ -Xms512m -Xmx512m -Dloader.path=/app/lib,/app/config -jar /app/*.jar
+    entrypoint: java -server -Duser.dir=/app/ -Xms512m -Xmx512m -Dloader.path=/app/lib,/app/config -jar /app/admin-api.jar
     networks:
       extnetwork:
     depends_on:
@@ -267,7 +267,7 @@ services:
       - /etc/timezone:/etc/timezone
     environment:
       - TZ=Asia/Shanghai
-    entrypoint: java -server -Duser.dir=/app/ -Xms512m -Xmx512m -Dloader.path=/app/lib,/app/config -jar /app/*.jar
+    entrypoint: java -server -Duser.dir=/app/ -Xms512m -Xmx512m -Dloader.path=/app/lib,/app/config -jar /app/open-api.jar
     networks:
       extnetwork:
     depends_on:
@@ -297,7 +297,7 @@ services:
       - /etc/timezone:/etc/timezone
     environment:
       - TZ=Asia/Shanghai
-    entrypoint: java -server -Duser.dir=/app/ -Xms512m -Xmx512m -Dloader.path=/app/lib,/app/config -jar /app/*.jar
+    entrypoint: java -server -Duser.dir=/app/ -Xms512m -Xmx512m -Dloader.path=/app/lib,/app/config -jar /app/chat.jar
     networks:
       extnetwork:
     depends_on:
@@ -326,7 +326,7 @@ services:
       - /etc/timezone:/etc/timezone
     environment:
       - TZ=Asia/Shanghai
-    entrypoint: java -server -Duser.dir=/app/ -Xms512m -Xmx512m -Dloader.path=/app/lib,/app/config -jar /app/*.jar
+    entrypoint: java -server -Duser.dir=/app/ -Xms512m -Xmx512m -Dloader.path=/app/lib,/app/config -jar /app/market.jar
     networks:
       extnetwork:
     depends_on:
@@ -352,7 +352,7 @@ services:
       - /etc/timezone:/etc/timezone
     environment:
       - TZ=Asia/Shanghai
-    entrypoint: java -server -Duser.dir=/app/ -Xms512m -Xmx512m -Dloader.path=/app/lib,/app/config -jar /app/*.jar
+    entrypoint: java -server -Duser.dir=/app/ -Xms512m -Xmx512m -Dloader.path=/app/lib,/app/config -jar /app/otc-api.jar
     networks:
       extnetwork:
     depends_on:
@@ -380,7 +380,7 @@ services:
       - /etc/timezone:/etc/timezone
     environment:
       - TZ=Asia/Shanghai
-    entrypoint: java -server -Duser.dir=/app/ -Xms512m -Xmx512m -Dloader.path=/app/lib,/app/config -jar /app/*.jar
+    entrypoint: java -server -Duser.dir=/app/ -Xms512m -Xmx512m -Dloader.path=/app/lib,/app/config -jar /app/wallet.jar
     networks:
       extnetwork:
     depends_on:
