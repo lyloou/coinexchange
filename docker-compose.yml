@@ -17,7 +17,6 @@ services:
     command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
     networks:
       extnetwork:
-        ipv4_address: ${url_mysql}
   ce-redis1:
     container_name: ce-redis1
     image: redis:latest
@@ -34,7 +33,6 @@ services:
     # command: --requirepass "Credit2016Admin"
     networks:
       extnetwork:
-        ipv4_address: ${url_redis1}
   ce-redis2:
     container_name: ce-redis2
     image: redis:latest
@@ -51,7 +49,6 @@ services:
     # command: --requirepass "Credit2016Admin"
     networks:
       extnetwork:
-        ipv4_address: ${url_redis2}
   ce-zookeeper:
     container_name: ce-zookeeper
     image: wurstmeister/zookeeper ## 镜像
@@ -66,7 +63,6 @@ services:
       - TZ=Asia/Shanghai
     networks:
       extnetwork:
-        ipv4_address: ${url_zookeeper}
   # https://www.jianshu.com/p/1d7759d77ec1
   # https://blog.csdn.net/Crystalqy/article/details/94006936
   ce-kafka:
@@ -92,7 +88,6 @@ services:
       - /etc/timezone:/etc/timezone
     networks:
       extnetwork:
-        ipv4_address: ${url_kafka}
   ce-kafka-manager:
     container_name: ce-kafka-manager
     image: sheepkiller/kafka-manager
@@ -102,7 +97,6 @@ services:
       ZK_HOSTS: ce-zookeeper:2181
     networks:
       extnetwork:
-        ipv4_address: ${url_kafka_manager}
     volumes:
       - /etc/localtime:/etc/localtime
       - /etc/timezone:/etc/timezone
@@ -122,7 +116,6 @@ services:
     command: mongod
     networks:
       extnetwork:
-        ipv4_address: ${url_mongo}
 
   ######## ce-app
   ce-app-cloud:
@@ -132,19 +125,16 @@ services:
     ports:
       - 7000:7000
     volumes:
-      - ./app/cloud/cloud.jar:/cloud.jar
+      - ./app/cloud/:/app/
       - ./logs:/mnt/logs/
       # 指定容器时间为宿主机时间
       - /etc/localtime:/etc/localtime
       - /etc/timezone:/etc/timezone
     environment:
       - TZ=Asia/Shanghai
-    entrypoint: java -server -Xms512m -Xmx512m -Xmn200m -Xss256k -jar -Dserver.port=7000 -Dspring.profiles.active=${ENV} /cloud.jar
+    entrypoint: java -server -Duser.dir=/app/ -Xms512m -Xmx512m -Dloader.path=/app/lib,/app/config -jar /app/cloud.jar
     networks:
       extnetwork:
-        ipv4_address: ${url_app_cloud}
-    extra_hosts:
-      - ${host_market}
     depends_on:
       - ce-mysql
       - ce-redis1
@@ -161,18 +151,15 @@ services:
     ports:
       - 9001:6001
     volumes:
-      - ./app/ucenter-api/ucenter-api.jar:/ucenter-api.jar
+      - ./app/ucenter-api/:/app/
       - ./logs:/mnt/logs/
       - /etc/localtime:/etc/localtime
       - /etc/timezone:/etc/timezone
     environment:
       - TZ=Asia/Shanghai
-    entrypoint: java -server -Xms512m -Xmx512m -Xmn200m -Xss256k -jar -Dserver.port=6001 -Dspring.profiles.active=${ENV} /ucenter-api.jar
+    entrypoint: java -server -Duser.dir=/app/ -Xms512m -Xmx512m -Dloader.path=/app/lib,/app/config -jar /app/ucenter-api.jar
     networks:
       extnetwork:
-        ipv4_address: ${url_app_ucenter_api}
-    extra_hosts:
-      - ${host_market}
     depends_on:
       - ce-mysql
       - ce-redis1
@@ -192,18 +179,15 @@ services:
     ports:
       - 9003:6003
     volumes:
-      - ./app/exchange-api/exchange-api.jar:/exchange-api.jar
+      - ./app/exchange-api/:/app/
       - ./logs:/mnt/logs/
       - /etc/localtime:/etc/localtime
       - /etc/timezone:/etc/timezone
     environment:
       - TZ=Asia/Shanghai
-    entrypoint: java -server -Xms512m -Xmx512m -Xmn200m -Xss256k -jar -Dserver.port=6003 -Dspring.profiles.active=${ENV} /exchange-api.jar
+    entrypoint: java -server -Duser.dir=/app/ -Xms512m -Xmx512m -Dloader.path=/app/lib,/app/config -jar /app/exchange-api.jar
     networks:
       extnetwork:
-        ipv4_address: ${url_app_exchange_api}
-    extra_hosts:
-      - ${host_market}
     depends_on:
       - ce-mysql
       - ce-redis1
@@ -223,18 +207,15 @@ services:
     ports:
       - 9005:6005
     volumes:
-      - ./app/exchange/exchange.jar:/exchange.jar
+      - ./app/exchange/:/app/
       - ./logs:/mnt/logs/
       - /etc/localtime:/etc/localtime
       - /etc/timezone:/etc/timezone
     environment:
       - TZ=Asia/Shanghai
-    entrypoint: java -server -Xms512m -Xmx512m -Xmn200m -Xss256k -jar -Dserver.port=6005 -Dspring.profiles.active=${ENV} /exchange.jar
+    entrypoint: java -server -Duser.dir=/app/ -Xms512m -Xmx512m -Dloader.path=/app/lib,/app/config -jar /app/exchange.jar
     networks:
       extnetwork:
-        ipv4_address: ${url_app_exchange}
-    extra_hosts:
-      - ${host_market}
     depends_on:
       - ce-mysql
       - ce-redis1
@@ -245,25 +226,22 @@ services:
       - ce-mongo
       - ce-app-cloud
 
-  ce-app-admin:
-    container_name: ce-app-admin
+  ce-app-admin-api:
+    container_name: ce-app-admin-api
     image: openjdk:8
     restart: always
     ports:
       - 9010:6010
     volumes:
-      - ./app/admin/admin-api.jar:/admin-api.jar
+      - ./app/admin-api/:/app/
       - ./logs:/mnt/logs/
       - /etc/localtime:/etc/localtime
       - /etc/timezone:/etc/timezone
     environment:
       - TZ=Asia/Shanghai
-    entrypoint: java -server -Xms512m -Xmx512m -Xmn200m -Xss256k -jar -Dserver.port=6010 -Dspring.profiles.active=${ENV} /admin-api.jar
+    entrypoint: java -server -Duser.dir=/app/ -Xms512m -Xmx512m -Dloader.path=/app/lib,/app/config -jar /app/admin-api.jar
     networks:
       extnetwork:
-        ipv4_address: ${url_app_admin}
-    extra_hosts:
-      - ${host_market}
     depends_on:
       - ce-mysql
       - ce-redis1
@@ -283,18 +261,15 @@ services:
     ports:
       - 9011:7010
     volumes:
-      - ./app/open-api/open-api.jar:/open-api.jar
+      - ./app/open-api/:/app/
       - ./logs:/mnt/logs/
       - /etc/localtime:/etc/localtime
       - /etc/timezone:/etc/timezone
     environment:
       - TZ=Asia/Shanghai
-    entrypoint: java -server -Xms512m -Xmx512m -Xmn200m -Xss256k -jar -Dserver.port=7010 -Dspring.profiles.active=${ENV} /open-api.jar
+    entrypoint: java -server -Duser.dir=/app/ -Xms512m -Xmx512m -Dloader.path=/app/lib,/app/config -jar /app/open-api.jar
     networks:
       extnetwork:
-        ipv4_address: ${url_app_open_api}
-    extra_hosts:
-      - ${host_market}
     depends_on:
       - ce-mysql
       - ce-redis1
@@ -315,19 +290,16 @@ services:
       - 9008:6008
       - 28902:28902
     volumes:
-      - ./app/chat/chat.jar:/chat.jar
+      - ./app/chat/:/app/
       - ./logs:/mnt/logs/
       - ./app/chat/web/:/web/
       - /etc/localtime:/etc/localtime
       - /etc/timezone:/etc/timezone
     environment:
       - TZ=Asia/Shanghai
-    entrypoint: java -server -Xms512m -Xmx512m -Xmn200m -Xss256k -jar -Dserver.port=6008 -Dspring.profiles.active=${ENV} /chat.jar
+    entrypoint: java -server -Duser.dir=/app/ -Xms512m -Xmx512m -Dloader.path=/app/lib,/app/config -jar /app/chat.jar
     networks:
       extnetwork:
-        ipv4_address: ${url_app_chat}
-    extra_hosts:
-      - ${host_market}
     depends_on:
       - ce-mysql
       - ce-redis1
@@ -348,18 +320,15 @@ services:
       - 9004:6004
       - 28901:28901
     volumes:
-      - ./app/market/market.jar:/market.jar
+      - ./app/market/:/app/
       - ./logs:/mnt/logs/
       - /etc/localtime:/etc/localtime
       - /etc/timezone:/etc/timezone
     environment:
       - TZ=Asia/Shanghai
-    entrypoint: java -server -Xms512m -Xmx512m -Xmn200m -Xss256k -jar -Dserver.port=6004 -Dspring.profiles.active=${ENV} /market.jar
+    entrypoint: java -server -Duser.dir=/app/ -Xms512m -Xmx512m -Dloader.path=/app/lib,/app/config -jar /app/market.jar
     networks:
       extnetwork:
-        ipv4_address: ${url_app_market}
-    extra_hosts:
-      - ${host_market}
     depends_on:
       - ce-mysql
       - ce-redis1
@@ -377,18 +346,15 @@ services:
     ports:
       - 9006:6006
     volumes:
-      - ./app/otc-api/otc-api.jar:/otc-api.jar
+      - ./app/otc-api/:/app/
       - ./logs:/mnt/logs/
       - /etc/localtime:/etc/localtime
       - /etc/timezone:/etc/timezone
     environment:
       - TZ=Asia/Shanghai
-    entrypoint: java -server -Xms512m -Xmx512m -Xmn200m -Xss256k -jar -Dserver.port=6006 -Dspring.profiles.active=${ENV} /otc-api.jar
+    entrypoint: java -server -Duser.dir=/app/ -Xms512m -Xmx512m -Dloader.path=/app/lib,/app/config -jar /app/otc-api.jar
     networks:
       extnetwork:
-        ipv4_address: ${url_app_otc_api}
-    extra_hosts:
-      - ${host_market}
     depends_on:
       - ce-mysql
       - ce-redis1
@@ -408,18 +374,15 @@ services:
     ports:
       - 9007:7006
     volumes:
-      - ./app/wallet/wallet.jar:/wallet.jar
+      - ./app/wallet/:/app/
       - ./logs:/mnt/logs/
       - /etc/localtime:/etc/localtime
       - /etc/timezone:/etc/timezone
     environment:
       - TZ=Asia/Shanghai
-    entrypoint: java -server -Xms512m -Xmx512m -Xmn200m -Xss256k -jar -Dserver.port=7006 -Dspring.profiles.active=${ENV} /wallet.jar
+    entrypoint: java -server -Duser.dir=/app/ -Xms512m -Xmx512m -Dloader.path=/app/lib,/app/config -jar /app/wallet.jar
     networks:
       extnetwork:
-        ipv4_address: ${url_app_wallet}
-    extra_hosts:
-      - ${host_market}
     depends_on:
       - ce-mysql
       - ce-redis1
@@ -442,8 +405,8 @@ services:
       - 8092:8092
       - 8093:8093
     volumes:
-      - ./app/web-web/dist:/web/app/web-web
-      - ./app/web-admin/dist:/web/app/web-admin
+      - ./web/web-web/dist:/web/web-web/dist
+      - ./web/web-admin/dist:/web/web-admin/dist
       - ./nginx/conf/nginx.conf:/etc/nginx/nginx.conf
       - ./nginx/conf/conf.d:/etc/nginx/conf.d
       - /etc/localtime:/etc/localtime
@@ -452,9 +415,6 @@ services:
       - TZ=Asia/Shanghai
     networks:
       extnetwork:
-        ipv4_address: ${url_web_web}
-    extra_hosts:
-      - ${host_market}
     depends_on:
       - ce-mysql
       - ce-redis1
