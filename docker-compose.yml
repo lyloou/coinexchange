@@ -126,6 +126,7 @@ services:
       - 7000:7000
     volumes:
       - ./app/cloud/:/app/
+      - ./app/library/:/app/lib
       - ./logs:/mnt/logs/
       # 指定容器时间为宿主机时间
       - /etc/localtime:/etc/localtime
@@ -152,6 +153,7 @@ services:
       - 9001:6001
     volumes:
       - ./app/ucenter-api/:/app/
+      - ./app/library/:/app/lib
       - ./logs:/mnt/logs/
       - /etc/localtime:/etc/localtime
       - /etc/timezone:/etc/timezone
@@ -180,6 +182,7 @@ services:
       - 9003:6003
     volumes:
       - ./app/exchange-api/:/app/
+      - ./app/library/:/app/lib
       - ./logs:/mnt/logs/
       - /etc/localtime:/etc/localtime
       - /etc/timezone:/etc/timezone
@@ -208,6 +211,7 @@ services:
       - 9005:6005
     volumes:
       - ./app/exchange/:/app/
+      - ./app/library/:/app/lib
       - ./logs:/mnt/logs/
       - /etc/localtime:/etc/localtime
       - /etc/timezone:/etc/timezone
@@ -234,6 +238,7 @@ services:
       - 9010:6010
     volumes:
       - ./app/admin-api/:/app/
+      - ./app/library/:/app/lib
       - ./logs:/mnt/logs/
       - /etc/localtime:/etc/localtime
       - /etc/timezone:/etc/timezone
@@ -262,6 +267,7 @@ services:
       - 9011:7010
     volumes:
       - ./app/open-api/:/app/
+      - ./app/library/:/app/lib
       - ./logs:/mnt/logs/
       - /etc/localtime:/etc/localtime
       - /etc/timezone:/etc/timezone
@@ -291,6 +297,7 @@ services:
       - 28902:28902
     volumes:
       - ./app/chat/:/app/
+      - ./app/library/:/app/lib
       - ./logs:/mnt/logs/
       - ./app/chat/web/:/web/
       - /etc/localtime:/etc/localtime
@@ -321,6 +328,7 @@ services:
       - 28901:28901
     volumes:
       - ./app/market/:/app/
+      - ./app/library/:/app/lib
       - ./logs:/mnt/logs/
       - /etc/localtime:/etc/localtime
       - /etc/timezone:/etc/timezone
@@ -347,6 +355,7 @@ services:
       - 9006:6006
     volumes:
       - ./app/otc-api/:/app/
+      - ./app/library/:/app/lib
       - ./logs:/mnt/logs/
       - /etc/localtime:/etc/localtime
       - /etc/timezone:/etc/timezone
@@ -375,6 +384,7 @@ services:
       - 9007:7006
     volumes:
       - ./app/wallet/:/app/
+      - ./app/library/:/app/lib
       - ./logs:/mnt/logs/
       - /etc/localtime:/etc/localtime
       - /etc/timezone:/etc/timezone
