@@ -133,6 +133,7 @@ services:
     environment:
       - TZ=Asia/Shanghai
     entrypoint: java -server -Duser.dir=/app/ -Xms512m -Xmx512m -Dloader.path=/app/lib,/app/config -jar /app/cloud.jar
+    command: tail -F anything
     networks:
       extnetwork:
     depends_on:
@@ -158,6 +159,7 @@ services:
     environment:
       - TZ=Asia/Shanghai
     entrypoint: java -server -Duser.dir=/app/ -Xms512m -Xmx512m -Dloader.path=/app/lib,/app/config -jar /app/ucenter-api.jar
+    command: tail -F anything
     networks:
       extnetwork:
     depends_on:
@@ -186,6 +188,7 @@ services:
     environment:
       - TZ=Asia/Shanghai
     entrypoint: java -server -Duser.dir=/app/ -Xms512m -Xmx512m -Dloader.path=/app/lib,/app/config -jar /app/exchange-api.jar
+    command: tail -F anything
     networks:
       extnetwork:
     depends_on:
@@ -214,6 +217,7 @@ services:
     environment:
       - TZ=Asia/Shanghai
     entrypoint: java -server -Duser.dir=/app/ -Xms512m -Xmx512m -Dloader.path=/app/lib,/app/config -jar /app/exchange.jar
+    command: tail -F anything
     networks:
       extnetwork:
     depends_on:
@@ -240,6 +244,7 @@ services:
     environment:
       - TZ=Asia/Shanghai
     entrypoint: java -server -Duser.dir=/app/ -Xms512m -Xmx512m -Dloader.path=/app/lib,/app/config -jar /app/admin-api.jar
+    command: tail -F anything
     networks:
       extnetwork:
     depends_on:
@@ -268,6 +273,7 @@ services:
     environment:
       - TZ=Asia/Shanghai
     entrypoint: java -server -Duser.dir=/app/ -Xms512m -Xmx512m -Dloader.path=/app/lib,/app/config -jar /app/open-api.jar
+    command: tail -F anything
     networks:
       extnetwork:
     depends_on:
@@ -298,6 +304,7 @@ services:
     environment:
       - TZ=Asia/Shanghai
     entrypoint: java -server -Duser.dir=/app/ -Xms512m -Xmx512m -Dloader.path=/app/lib,/app/config -jar /app/chat.jar
+    command: tail -F anything
     networks:
       extnetwork:
     depends_on:
@@ -327,6 +334,7 @@ services:
     environment:
       - TZ=Asia/Shanghai
     entrypoint: java -server -Duser.dir=/app/ -Xms512m -Xmx512m -Dloader.path=/app/lib,/app/config -jar /app/market.jar
+    command: tail -F anything
     networks:
       extnetwork:
     depends_on:
@@ -353,6 +361,7 @@ services:
     environment:
       - TZ=Asia/Shanghai
     entrypoint: java -server -Duser.dir=/app/ -Xms512m -Xmx512m -Dloader.path=/app/lib,/app/config -jar /app/otc-api.jar
+    command: tail -F anything
     networks:
       extnetwork:
     depends_on:
@@ -381,6 +390,7 @@ services:
     environment:
       - TZ=Asia/Shanghai
     entrypoint: java -server -Duser.dir=/app/ -Xms512m -Xmx512m -Dloader.path=/app/lib,/app/config -jar /app/wallet.jar
+    command: tail -F anything
     networks:
       extnetwork:
     depends_on:
