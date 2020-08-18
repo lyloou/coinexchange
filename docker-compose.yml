@@ -83,7 +83,6 @@ services:
       # KAFKA_DELETE_RETENTION_MS: 1000
     volumes:
       - ./kafka-logs:/kafka
-      - ./kafka-config:/opt/kafka/config/
       - /var/run/docker.sock:/var/run/docker.sock
       - /etc/localtime:/etc/localtime
       - /etc/timezone:/etc/timezone
